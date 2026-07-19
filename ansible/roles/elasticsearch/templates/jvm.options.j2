@@ -1,0 +1,37 @@
+##
+# Elasticsearch JVM configuration
+##
+
+# Heap size
+-Xms{{ elasticsearch_heap_size }}
+-Xmx{{ elasticsearch_heap_size }}
+
+# Disable explicit GC
+-XX:+DisableExplicitGC
+
+# Use G1GC
+-XX:+UseG1GC
+-XX:G1ReservePercent=25
+-XX:InitiatingHeapOccupancyPercent=30
+
+# Prevent gc from running on allocation failure
+-XX:+ExitOnOutOfMemoryError
+
+# Lock memory if configured
+{% if elasticsearch_memory_lock %}
+-XX:+UseLargePages
+-XX:+AlwaysPreTouch
+{% endif %}
+
+# Expert settings
+-XX:+UnlockDiagnosticVMOptions
+-XX:-OmitStackTraceInFastThrow
+-XX:+AlwaysActAsServerClassMachine
+-XX:+UseBiasedLocking
+-XX:+UseCondCardMark
+
+# Log configuration
+-Xlog:gc*,gc+age=trace,safepoint:file={{ elasticsearch_path_logs }}/gc.log:utctime,pid,tags:filecount=32,filesize=64m
+
+# Temporary directory
+-Djava.io.tmpdir={{ elasticsearch_path_data }}/tmp

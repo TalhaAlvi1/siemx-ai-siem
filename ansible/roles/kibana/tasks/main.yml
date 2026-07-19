@@ -1,0 +1,90 @@
+---
+# Kibana Role - Main Tasks
+# Install and configure Kibana with security
+
+- name: Add Kibana GPG key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  tags: gpg
+
+- name: Add Kibana repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+    state: present
+    filename: elastic-8.x
+  tags: repository
+
+- name: Install Kibana
+  apt:
+    name: "kibana={{ siem_version }}"
+    state: present
+    update_cache: yes
+  notify: restart kibana
+  tags: install
+
+- name: Create Kibana directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: kibana
+    group: kibana
+    mode: '0755'
+  loop:
+    - "{{ siem_config_directory }}/kibana"
+    - "{{ siem_log_directory }}/kibana"
+  tags: directories
+
+- name: Configure Kibana
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+    owner: root
+    group: kibana
+    mode: '0640'
+  notify: restart kibana
+  tags: configuration
+
+- name: Set up Kibana encryption key
+  include_tasks: setup_encryption.yml
+  when: kibana_encryption_key != ''
+  tags: encryption
+
+- name: Enable and start Kibana service
+  systemd:
+    name: kibana
+    enabled: yes
+    state: started
+  tags: service
+
+- name: Wait for Kibana to be ready
+  uri:
+    url: "http://{{ kibana_host }}:{{ kibana_port }}/api/status"
+    method: GET
+    timeout: 30
+  register: kibana_status
+  until: kibana_status.status == 200
+  retries: 30
+  delay: 10
+  tags: health-check
+
+- name: Create Kibana spaces
+  uri:
+    url: "http://{{ kibana_host }}:{{ kibana_port }}/api/spaces/space"
+    method: POST
+    body_format: json
+    body: |
+      {
+        "id": "{{ kibana_default_space }}",
+        "name": "SIEM Space",
+        "description": "Security Information and Event Management",
+        "disabledFeatures": [],
+        "initials": "SIEM"
+      }
+    headers:
+      kbn-xsrf: "true"
+      Authorization: "Basic {{ (elasticsearch_username + ':' + elasticsearch_password) | b64encode }}"
+    status_code: 200
+  ignore_errors: yes
+  when: kibana_spaces_enabled
+  tags: spaces

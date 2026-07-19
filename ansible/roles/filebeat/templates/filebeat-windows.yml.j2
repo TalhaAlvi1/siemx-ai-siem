@@ -1,0 +1,101 @@
+---
+# Filebeat Configuration for Windows
+
+###################### Filebeat Configuration #############################
+
+# ============================== Filebeat inputs ==============================
+
+filebeat.inputs:
+- type: winlog
+  enabled: true
+  channels:
+{% for log in filebeat_windows_event_logs %}
+    - name: {{ log.name }}
+      level: {{ log.level }}
+      ignore_older: 72h
+{% endfor %}
+  processors:
+    - add_tags:
+        tags: [windows, eventlog]
+    - drop_fields:
+        fields: [agent, ecs, log, host]
+
+- type: log
+  enabled: true
+  paths:
+    - C:\Windows\System32\winevt\Logs\Security.evtx
+    - C:\Windows\System32\winevt\Logs\System.evtx
+    - C:\Windows\System32\winevt\Logs\Application.evtx
+  processors:
+    - add_tags:
+        tags: [windows, evtx]
+    - decode_xml_wineventlog: ~
+
+# ============================== Filebeat modules ==============================
+
+filebeat.config.modules:
+  path: ${path.config}\modules.d\*.yml
+  reload.enabled: false
+
+# ============================== Processors ==============================
+
+processors:
+{% for processor in filebeat_processors %}
+  - {{ processor | to_json }}
+{% endfor %}
+
+# ============================== Output =====================================
+
+# ------------------------------ Logstash Output ------------------------------
+output.logstash:
+  hosts: {{ filebeat_output_logstash_hosts | to_json }}
+  {% if filebeat_output_logstash_ssl_enabled %}
+  ssl.certificate_authorities: {{ filebeat_output_logstash_ssl_certificate_authorities | to_json }}
+  ssl.certificate: "{{ filebeat_ssl_certificate }}"
+  ssl.key: "{{ filebeat_ssl_key }}"
+  {% endif %}
+  loadbalance: true
+  bulk_max_size: 1024
+  worker: 1
+
+# ============================== Logging ==============================
+
+logging.level: {{ filebeat_logging_level }}
+logging.to_files: {{ filebeat_logging_to_files }}
+logging.files:
+  path: C:\ProgramData\filebeat\logs
+  name: filebeat
+  rotateeverybytes: {{ filebeat_logging_files_rotateeverybytes }}
+  keepfiles: {{ filebeat_logging_files_keepfiles }}
+
+# ============================== Resource Management ==============================
+
+max_procs: {{ filebeat_max_procs }}
+
+queue.mem:
+  events: {{ filebeat_queue_mem_events }}
+
+spool_size: {{ filebeat_spool_size }}
+
+# ============================== Global tags ==============================
+
+tags: {{ filebeat_tags | to_json }}
+
+fields: {{ filebeat_fields | to_json }}
+fields_under_root: true
+
+# ============================== Monitoring ==============================
+
+monitoring.enabled: true
+monitoring.elasticsearch:
+  hosts: ["https://{{ elasticsearch_host }}:{{ elasticsearch_port }}"]
+  username: "{{ elasticsearch_username }}"
+  password: "${LOGSTASH_PASSWORD:{{ elasticsearch_password }}}"
+  ssl.certificate_authorities: ["{{ tls_ca_certificate }}"]
+  ssl.verification_mode: certificate
+
+# ============================== HTTP Endpoint ==============================
+
+http.enabled: true
+http.host: localhost
+http.port: 5066

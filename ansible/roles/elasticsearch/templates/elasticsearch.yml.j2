@@ -1,0 +1,68 @@
+---
+# Elasticsearch Configuration Template
+
+# ==================== CLUSTER ====================
+cluster.name: {{ elasticsearch_cluster_name }}
+node.name: {{ elasticsearch_node_name }}
+path.data: {{ elasticsearch_path_data }}
+path.logs: {{ elasticsearch_path_logs }}
+
+# ==================== NETWORK ====================
+network.host: {{ elasticsearch_network_host }}
+http.port: {{ elasticsearch_http_port }}
+transport.port: {{ elasticsearch_transport_port }}
+
+# ==================== DISCOVERY ====================
+discovery.type: {{ elasticsearch_discovery_type }}
+{% if elasticsearch_discovery_seed_hosts %}
+discovery.seed_hosts: {{ elasticsearch_discovery_seed_hosts | to_json }}
+{% endif %}
+{% if elasticsearch_cluster_initial_master_nodes %}
+cluster.initial_master_nodes: {{ elasticsearch_cluster_initial_master_nodes | to_json }}
+{% endif %}
+
+# ==================== GATEWAY ====================
+gateway.expected_nodes: {{ elasticsearch_gateway_expected_nodes }}
+gateway.recover_after_nodes: {{ elasticsearch_gateway_recover_after_nodes }}
+
+# ==================== MEMORY ====================
+bootstrap.memory_lock: {{ elasticsearch_bootstrap_memory_lock }}
+
+# ==================== SECURITY ====================
+xpack.security.enabled: {{ elasticsearch_xpack_security_enabled }}
+xpack.monitoring.enabled: {{ elasticsearch_xpack_monitoring_enabled }}
+
+{% if elasticsearch_ssl_enabled %}
+# SSL/TLS Configuration
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.keystore.path: {{ tls_server_certificate }}
+xpack.security.http.ssl.truststore.path: {{ tls_ca_certificate }}
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.keystore.path: {{ tls_server_certificate }}
+xpack.security.transport.ssl.truststore.path: {{ tls_ca_certificate }}
+xpack.security.transport.ssl.verification_mode: certificate
+{% endif %}
+
+# ==================== INDEX SETTINGS ====================
+action.auto_create_index: {{ elasticsearch_action_auto_create_index }}
+indices.query.bool.max_clause_count: {{ elasticsearch_indices_query_bool_max_clause_count }}
+
+# ==================== THREAD POOLS ====================
+thread_pool.write.queue_size: {{ elasticsearch_thread_pool_write_queue_size }}
+thread_pool.search.queue_size: {{ elasticsearch_thread_pool_search_queue_size }}
+
+# ==================== RECOVERY ====================
+indices.recovery.max_bytes_per_sec: {{ elasticsearch_indices_recovery_max_bytes_per_sec }}
+
+# ==================== HTTP ====================
+http.compression: {{ elasticsearch_http_compression }}
+http.cors.enabled: {{ elasticsearch_http_cors_enabled }}
+http.max_content_length: {{ elasticsearch_http_max_content_length }}
+
+# ==================== LOGGING ====================
+logger.level: {{ elasticsearch_log_level }}
+
+# ==================== BACKUP ====================
+{% if elasticsearch_path_repo %}
+path.repo: {{ elasticsearch_path_repo | to_json }}
+{% endif %}

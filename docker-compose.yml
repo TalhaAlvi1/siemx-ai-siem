@@ -1,0 +1,140 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: siemx-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - xpack.security.enrollment.enabled=true
+      - ELASTIC_PASSWORD=SiemxPass123!
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - "path.repo=/usr/share/elasticsearch/data/backups"
+      - "logger.level=INFO"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+      - ./certs:/usr/share/elasticsearch/config/certs:ro
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - siemx-net
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc 'exec 3<>/dev/tcp/localhost/9200'"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.12.0
+    container_name: siemx-logstash
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_PASSWORD=SiemxPass123!
+      - ELASTICSEARCH_SSL_ENABLED=false
+      - "pipeline.ecs_compatibility=disabled"
+    volumes:
+      - ./configs/logstash:/usr/share/logstash/pipeline:ro
+      - ./logs:/usr/share/logstash/logs
+    ports:
+      - "5044:5044"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    networks:
+      - siemx-net
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc 'exec 3<>/dev/tcp/localhost/9600'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.12.0
+    container_name: siemx-filebeat
+    user: root
+    depends_on:
+      logstash:
+        condition: service_started
+    command: ["-e", "--strict.perms=false"]
+    volumes:
+      - ./configs/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./logs/filebeat-input:/var/log/siemx
+      - ./logs/filebeat:/usr/share/filebeat/logs
+      - filebeat-data:/usr/share/filebeat/data
+    networks:
+      - siemx-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc 'exec 3<>/dev/tcp/localhost/5066'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.0
+    container_name: siemx-kibana
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_SERVICEACCOUNTTOKEN=AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjpJSm9CX2pwX1FGQ3h1QnFFTTJlNGxn
+      - SERVER_NAME=kibana
+      - XPACK_SECURITY_ENABLED=true
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=siemx_encryption_key_32chars_xxx
+      - XPACK_REPORTING_ENABLED=true
+      - XPACK_SECURITY_LOGINASSISTANCEMESSAGE=Welcome to SIEMX - AI-Driven SIEM
+    ports:
+      - "5601:5601"
+    networks:
+      - siemx-net
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc 'exec 3<>/dev/tcp/localhost/5601'"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  anomaly-detection:
+    build: ./anomaly-detection
+    container_name: siemx-anomaly-detection
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=SiemxPass123!
+      - FLASK_ENV=production
+    ports:
+      - "8080:8080"
+    networks:
+      - siemx-net
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=5)\""]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  es-data:
+  filebeat-data:
+
+networks:
+  siemx-net:

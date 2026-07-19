@@ -1,0 +1,14 @@
+---
+# Kibana Handlers
+
+- name: restart kibana
+  systemd:
+    name: kibana
+    state: restarted
+  listen: "restart kibana"
+
+- name: reload kibana
+  systemd:
+    name: kibana
+    state: reloaded
+  listen: "reload kibana"

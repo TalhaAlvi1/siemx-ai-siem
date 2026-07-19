@@ -1,0 +1,68 @@
+---
+# Elasticsearch Role Defaults
+# Default variables for Elasticsearch configuration
+
+# Version and package settings
+elasticsearch_version: "{{ siem_version }}"
+elasticsearch_package_state: present
+
+# Service settings
+elasticsearch_service_enabled: true
+elasticsearch_service_state: started
+
+# Network settings
+elasticsearch_network_host: "0.0.0.0"
+elasticsearch_http_port: "{{ elasticsearch_port }}"
+elasticsearch_transport_port: "{{ elasticsearch_transport_port }}"
+
+# Cluster settings
+elasticsearch_cluster_name: "{{ elasticsearch_cluster_name }}"
+elasticsearch_node_name: "{{ elasticsearch_node_name }}"
+elasticsearch_discovery_type: single-node
+
+# Memory settings
+elasticsearch_heap_size: "{{ elasticsearch_heap_size }}"
+elasticsearch_memory_lock: "{{ elasticsearch_memory_lock }}"
+
+# Path settings
+elasticsearch_path_data: "{{ siem_data_directory }}/elasticsearch"
+elasticsearch_path_logs: "{{ siem_log_directory }}/elasticsearch"
+elasticsearch_path_config: /etc/elasticsearch
+
+# Security settings
+elasticsearch_xpack_security_enabled: true
+elasticsearch_xpack_monitoring_enabled: true
+elasticsearch_ssl_enabled: "{{ tls_enabled }}"
+
+# Bootstrap settings
+elasticsearch_bootstrap_memory_lock: "{{ elasticsearch_memory_lock }}"
+
+# Gateway settings
+elasticsearch_gateway_expected_nodes: 1
+elasticsearch_gateway_recover_after_nodes: 1
+
+# Discovery settings
+elasticsearch_discovery_seed_hosts: "{{ elasticsearch_discovery_seed_hosts }}"
+elasticsearch_cluster_initial_master_nodes: "{{ elasticsearch_cluster_initial_master_nodes }}"
+
+# Index settings
+elasticsearch_action_auto_create_index: true
+elasticsearch_indices_query_bool_max_clause_count: 4096
+
+# Thread pool settings
+elasticsearch_thread_pool_write_queue_size: 1000
+elasticsearch_thread_pool_search_queue_size: 1000
+
+# Recovery settings
+elasticsearch_indices_recovery_max_bytes_per_sec: 40mb
+
+# HTTP settings
+elasticsearch_http_compression: true
+elasticsearch_http_cors_enabled: false
+elasticsearch_http_max_content_length: 100mb
+
+# Logging settings
+elasticsearch_log_level: "{{ elasticsearch_log_level }}"
+
+# Backup settings
+elasticsearch_path_repo: []

@@ -1,0 +1,70 @@
+{
+  "version": "8.12.0",
+  "objects": [
+    {
+      "id": "security-overview-dashboard",
+      "type": "dashboard",
+      "attributes": {
+        "title": "SIEMX Security Overview",
+        "description": "Comprehensive security monitoring dashboard",
+        "panelsJSON": "[{\"embeddableConfig\":{},\"gridData\":{\"h\":15,\"i\":\"1\",\"w\":24,\"x\":0,\"y\":0},\"id\":\"failed-login-attempts\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"version\":\"8.12.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":15,\"i\":\"2\",\"w\":24,\"x\":24,\"y\":0},\"id\":\"top-attacking-ips\",\"panelIndex\":\"2\",\"type\":\"visualization\",\"version\":\"8.12.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":15,\"i\":\"3\",\"w\":24,\"x\":0,\"y\":15},\"id\":\"geographic-map\",\"panelIndex\":\"3\",\"type\":\"map\",\"version\":\"8.12.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":15,\"i\":\"4\",\"w\":24,\"x\":24,\"y\":15},\"id\":\"user-activity-timeline\",\"panelIndex\":\"4\",\"type\":\"visualization\",\"version\":\"8.12.0\"}]",
+        "optionsJSON": "{\"useMargins\":true,\"hidePanelTitles\":false}",
+        "version": 1,
+        "timeRestore": false
+      }
+    },
+    {
+      "id": "failed-login-attempts",
+      "type": "visualization",
+      "attributes": {
+        "title": "Failed Login Attempts Over Time",
+        "visState": "{\"title\":\"Failed Login Attempts\",\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"labels\":{\"show\":true,\"truncate\":100},\"position\":\"bottom\",\"scale\":{\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{},\"type\":\"category\"}],\"dimensions\":{\"series\":[{\"accessor\":0,\"aggType\":\"terms\",\"format\":{\"id\":\"string\"},\"params\":{}}],\"x\":null,\"y\":[{\"accessor\":2,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"params\":{}}]},\"grid\":{\"categoryLines\":false},\"labels\":{},\"legendPosition\":\"right\",\"seriesParams\":[{\"data\":{\"id\":\"1\",\"label\":\"Count\"},\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"lineWidth\":2,\"mode\":\"normal\",\"show\":\"true\",\"showCircles\":true,\"type\":\"line\",\"valueAxis\":\"ValueAxis-1\"}],\"times\":[],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"labels\":{\"filter\":false,\"rotate\":0,\"show\":true,\"truncate\":100},\"name\":\"LeftAxis-1\",\"position\":\"left\",\"scale\":{\"mode\":\"normal\",\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{\"text\":\"Count\"},\"type\":\"value\"}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"event.outcome\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}]}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"index\":\"siem-logs-*\",\"filter\":[],\"query\":{\"query\":\"event.category:authentication AND event.outcome:failure\",\"language\":\"kuery\"}}"
+        }
+      }
+    },
+    {
+      "id": "top-attacking-ips",
+      "type": "visualization",
+      "attributes": {
+        "title": "Top Attacking IPs",
+        "visState": "{\"title\":\"Top Attacking IPs\",\"type\":\"pie\",\"params\":{\"addLegend\":true,\"addTooltip\":true,\"dimensions\":{\"buckets\":[{\"accessor\":0,\"aggType\":\"terms\",\"format\":{\"id\":\"ip\"},\"params\":{\"field\":\"source.ip\",\"missingBucket\":false,\"otherBucket\":false}}],\"metric\":{\"accessor\":1,\"aggType\":\"count\",\"format\":{\"id\":\"number\"}}},\"isDonut\":false,\"labels\":{\"show\":false,\"values\":true,\"last_level\":true},\"legendPosition\":\"right\",\"type\":\"pie\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"source.ip\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"missingBucket\":false,\"otherBucket\":false}}]}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"index\":\"siem-logs-*\",\"filter\":[],\"query\":{\"query\":\"event.category:authentication AND event.outcome:failure\",\"language\":\"kuery\"}}"
+        }
+      }
+    },
+    {
+      "id": "geographic-map",
+      "type": "map",
+      "attributes": {
+        "title": "Geographic Map of Login Attempts",
+        "mapStateJSON": "{\"zoom\":2,\"center\":{\"lat\":20,\"lon\":0}}",
+        "layerListJSON": "[{\"id\":\"source-ip-layer\",\"type\":\"VECTOR\",\"sourceDescriptor\":{\"type\":\"ES_GEO_POINT\",\"indexPatternId\":\"siem-logs-*\",\"geoField\":\"source.geo.location\",\"metrics\":[{\"type\":\"COUNT\"}]},\"style\":{\"type\":\"VECTOR\",\"isFill\":true,\"fillColor\":\"#686de0\",\"lineColor\":\"#222f3e\",\"lineWidth\":1}}]",
+        "description": "",
+        "version": 1
+      }
+    },
+    {
+      "id": "user-activity-timeline",
+      "type": "visualization",
+      "attributes": {
+        "title": "User Activity Timeline",
+        "visState": "{\"title\":\"User Activity Timeline\",\"type\":\"timelion\",\"params\":{\"expression\":\".es(index=siem-logs-*,q='event.category:authentication').label(\\\"Authentication Events\\\").color(#3273dc), .es(index=siem-logs-*,q='event.category:process').label(\\\"Process Events\\\").color(#23d160), .es(index=siem-logs-*,q='event.category:network').label(\\\"Network Events\\\").color(#ff3860)\",\"interval\":\"1h\"},\"aggs\":[],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"index\":\"siem-logs-*\",\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"*\"}}"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "index_patterns": [
+    "{{ elasticsearch_index_prefix }}-*"
+  ],
+  "template": {
+    "settings": {
+      "number_of_shards": {{ elasticsearch_shard_count }},
+      "number_of_replicas": {{ elasticsearch_replica_count }},
+      "refresh_interval": "30s",
+      "blocks": {
+        "read_only_allow_delete": "false"
+      },
+      "index.lifecycle.name": "{{ ilm_policy_name }}",
+      "index.lifecycle.rollover_alias": "{{ elasticsearch_index_prefix }}-alias"
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "event": {
+          "properties": {
+            "created": {
+              "type": "date"
+            },
+            "kind": {
+              "type": "keyword"
+            },
+            "category": {
+              "type": "keyword"
+            },
+            "type": {
+              "type": "keyword"
+            },
+            "outcome": {
+              "type": "keyword"
+            }
+          }
+        },
+        "host": {
+          "properties": {
+            "name": {
+              "type": "keyword"
+            },
+            "hostname": {
+              "type": "keyword"
+            },
+            "ip": {
+              "type": "ip"
+            },
+            "mac": {
+              "type": "keyword"
+            },
+            "os": {
+              "properties": {
+                "family": {
+                  "type": "keyword"
+                },
+                "platform": {
+                  "type": "keyword"
+                },
+                "version": {
+                  "type": "keyword"
+                },
+                "full": {
+                  "type": "text",
+                  "fields": {
+                    "keyword": {
+                      "type": "keyword"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "source": {
+          "properties": {
+            "ip": {
+              "type": "ip"
+            },
+            "port": {
+              "type": "long"
+            },
+            "domain": {
+              "type": "keyword"
+            }
+          }
+        },
+        "destination": {
+          "properties": {
+            "ip": {
+              "type": "ip"
+            },
+            "port": {
+              "type": "long"
+            },
+            "domain": {
+              "type": "keyword"
+            }
+          }
+        },
+        "user": {
+          "properties": {
+            "name": {
+              "type": "keyword"
+            },
+            "id": {
+              "type": "keyword"
+            },
+            "domain": {
+              "type": "keyword"
+            }
+          }
+        },
+        "process": {
+          "properties": {
+            "pid": {
+              "type": "long"
+            },
+            "name": {
+              "type": "keyword"
+            },
+            "executable": {
+              "type": "keyword"
+            },
+            "command_line": {
+              "type": "text"
+            }
+          }
+        },
+        "log": {
+          "properties": {
+            "level": {
+              "type": "keyword"
+            },
+            "logger": {
+              "type": "keyword"
+            },
+            "origin": {
+              "properties": {
+                "file": {
+                  "properties": {
+                    "name": {
+                      "type": "keyword"
+                    },
+                    "line": {
+                      "type": "long"
+                    }
+                  }
+                },
+                "function": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        },
+        "message": {
+          "type": "text"
+        },
+        "tags": {
+          "type": "keyword"
+        },
+        "labels": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "composed_of": [],
+  "priority": 500,
+  "version": 1,
+  "_meta": {
+    "description": "SIEMX Logs Index Template"
+  }
+}

@@ -1,0 +1,49 @@
+---
+# Install GeoIP database for Logstash
+
+- name: Check if GeoIP database exists
+  stat:
+    path: "{{ geoip_database_path }}"
+  register: geoip_stat
+
+- name: Download MaxMind GeoLite2 City database
+  get_url:
+    url: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key={{ geoip_license_key | default('CHANGEME') }}&suffix=tar.gz"
+    dest: "/tmp/GeoLite2-City.tar.gz"
+    mode: '0644'
+  when: not geoip_stat.stat.exists
+
+- name: Extract GeoIP database
+  unarchive:
+    src: "/tmp/GeoLite2-City.tar.gz"
+    dest: "/tmp/"
+    remote_src: yes
+  when: not geoip_stat.stat.exists
+
+- name: Find extracted GeoIP database
+  find:
+    paths: "/tmp/"
+    patterns: "GeoLite2-City_*/GeoLite2-City.mmdb"
+    recurse: yes
+  register: geoip_files
+  when: not geoip_stat.stat.exists
+
+- name: Copy GeoIP database to final location
+  copy:
+    src: "{{ geoip_files.files[0].path }}"
+    dest: "{{ geoip_database_path }}"
+    owner: root
+    group: logstash
+    mode: '0644'
+  when: 
+    - not geoip_stat.stat.exists
+    - geoip_files.files | length > 0
+
+- name: Clean up temporary files
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/tmp/GeoLite2-City.tar.gz"
+    - "/tmp/GeoLite2-City_*"
+  when: not geoip_stat.stat.exists

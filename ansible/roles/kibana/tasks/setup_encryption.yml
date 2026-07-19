@@ -1,0 +1,47 @@
+---
+# Set up Kibana encryption
+
+- name: Generate encryption key if not provided
+  set_fact:
+    generated_encryption_key: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=32') }}"
+  when: kibana_encryption_key == ''
+
+- name: Use provided encryption key or generated one
+  set_fact:
+    kibana_encryption_key_final: "{{ kibana_encryption_key if kibana_encryption_key != '' else generated_encryption_key }}"
+
+- name: Store encryption key in Ansible facts
+  set_fact:
+    kibana_encryption_key: "{{ kibana_encryption_key_final }}"
+
+- name: Create Kibana keystore
+  shell: |
+    /usr/share/kibana/bin/kibana-keystore create
+  args:
+    chdir: /usr/share/kibana
+    creates: "/etc/kibana/kibana.keystore"
+  become: yes
+  become_user: kibana
+
+- name: Add encryption key to keystore
+  shell: |
+    echo "{{ kibana_encryption_key_final }}" | /usr/share/kibana/bin/kibana-keystore add -x xpack.security.encryptionKey
+  args:
+    chdir: /usr/share/kibana
+  become: yes
+  become_user: kibana
+  notify: restart kibana
+
+- name: Add reporting encryption key
+  shell: |
+    echo "{{ kibana_encryption_key_final }}" | /usr/share/kibana/bin/kibana-keystore add -x xpack.reporting.encryptionKey
+  args:
+    chdir: /usr/share/kibana
+  become: yes
+  become_user: kibana
+  notify: restart kibana
+
+- name: Display encryption key (save this for future use)
+  debug:
+    msg: "Kibana Encryption Key: {{ kibana_encryption_key_final }}"
+  when: kibana_encryption_key == ''

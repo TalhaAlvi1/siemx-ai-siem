@@ -1,0 +1,32 @@
+- type: log
+  enabled: true
+  paths: {{ filebeat_linux_syslog_paths | to_json }}
+  fields:
+    log_type: syslog
+  processors:
+    - add_tags:
+        tags: [linux, syslog]
+    - drop_fields:
+        fields: [agent, ecs]
+
+- type: log
+  enabled: true
+  paths: {{ filebeat_linux_audit_paths | to_json }}
+  fields:
+    log_type: audit
+  multiline.pattern: '^type='
+  multiline.negate: false
+  multiline.match: after
+  processors:
+    - add_tags:
+        tags: [linux, audit]
+    - drop_fields:
+        fields: [agent, ecs]
+
+- type: journald
+  enabled: true
+  processors:
+    - add_tags:
+        tags: [linux, journal]
+    - drop_fields:
+        fields: [agent, ecs]

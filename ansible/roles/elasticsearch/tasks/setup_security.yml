@@ -1,0 +1,112 @@
+---
+# Set up Elasticsearch security (users and roles)
+
+- name: Reset Elasticsearch password
+  shell: |
+    /usr/share/elasticsearch/bin/elasticsearch-reset-password -u {{ elasticsearch_username }} -i <<EOF
+    {{ elasticsearch_password }}
+    {{ elasticsearch_password }}
+    EOF
+  args:
+    chdir: /usr/share/elasticsearch
+  register: reset_password_result
+  changed_when: "'Password for the [{{ elasticsearch_username }}] user successfully reset.' in reset_password_result.stdout"
+
+- name: Create built-in users
+  uri:
+    url: "https://{{ elasticsearch_host }}:{{ elasticsearch_port }}/_security/user/{{ item.username }}/_password"
+    method: POST
+    user: "{{ elasticsearch_username }}"
+    password: "{{ elasticsearch_password }}"
+    body_format: json
+    body: |
+      {
+        "password": "{{ item.password }}"
+      }
+    validate_certs: no
+    status_code: 200
+  loop:
+    - { username: "kibana_system", password: "{{ vault_kibana_password | default('kibana_password') }}" }
+    - { username: "logstash_system", password: "{{ vault_logstash_password | default('logstash_password') }}" }
+    - { username: "beats_system", password: "{{ vault_beats_password | default('beats_password') }}" }
+  ignore_errors: yes
+
+- name: Create custom roles
+  uri:
+    url: "https://{{ elasticsearch_host }}:{{ elasticsearch_port }}/_security/role/{{ item.name }}"
+    method: PUT
+    user: "{{ elasticsearch_username }}"
+    password: "{{ elasticsearch_password }}"
+    body_format: json
+    body: "{{ item.definition }}"
+    validate_certs: no
+    status_code: 200
+  loop:
+    - name: "siem_reader"
+      definition: |
+        {
+          "cluster": ["monitor"],
+          "indices": [
+            {
+              "names": ["siem-logs-*"],
+              "privileges": ["read", "view_index_metadata"]
+            }
+          ]
+        }
+    - name: "siem_writer"
+      definition: |
+        {
+          "cluster": ["monitor"],
+          "indices": [
+            {
+              "names": ["siem-logs-*"],
+              "privileges": ["write", "create_index", "manage"]
+            }
+          ]
+        }
+    - name: "siem_admin"
+      definition: |
+        {
+          "cluster": ["all"],
+          "indices": [
+            {
+              "names": ["siem-logs-*"],
+              "privileges": ["all"]
+            }
+          ],
+          "applications": [
+            {
+              "application": "kibana-.kibana",
+              "resources": ["space:siem-space"],
+              "privileges": ["feature_dashboard.all", "feature_visualize.all", "feature_discover.all"]
+            }
+          ]
+        }
+
+- name: Create custom users
+  uri:
+    url: "https://{{ elasticsearch_host }}:{{ elasticsearch_port }}/_security/user/{{ item.username }}"
+    method: POST
+    user: "{{ elasticsearch_username }}"
+    password: "{{ elasticsearch_password }}"
+    body_format: json
+    body: |
+      {
+        "password": "{{ item.password }}",
+        "roles": {{ item.roles | to_json }},
+        "full_name": "{{ item.full_name }}",
+        "email": "{{ item.email }}"
+      }
+    validate_certs: no
+    status_code: 200
+  loop:
+    - username: "siem_analyst"
+      password: "{{ vault_siem_analyst_password | default('analyst_password') }}"
+      roles: ["siem_reader", "kibana_user"]
+      full_name: "SIEM Analyst"
+      email: "analyst@company.com"
+    - username: "siem_admin"
+      password: "{{ vault_siem_admin_password | default('admin_password') }}"
+      roles: ["siem_admin", "superuser"]
+      full_name: "SIEM Administrator"
+      email: "admin@company.com"

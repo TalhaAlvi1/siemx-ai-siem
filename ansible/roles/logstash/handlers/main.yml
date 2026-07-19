@@ -1,0 +1,14 @@
+---
+# Logstash Handlers
+
+- name: restart logstash
+  systemd:
+    name: logstash
+    state: restarted
+  listen: "restart logstash"
+
+- name: reload logstash
+  systemd:
+    name: logstash
+    state: reloaded
+  listen: "reload logstash"

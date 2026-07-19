@@ -1,0 +1,28 @@
+[Unit]
+Description=SIEMX Anomaly Detection Service
+After=network.target elasticsearch.service
+Wants=elasticsearch.service
+
+[Service]
+Type=simple
+User=siemx
+Group=siemx
+WorkingDirectory=/opt/anomaly-detector
+ExecStart=/usr/bin/python3 /opt/anomaly-detector/anomaly_detector.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/anomaly-detector/models /var/log/siemx
+
+# Environment variables
+Environment=PYTHONPATH=/opt/anomaly-detector
+
+[Install]
+WantedBy=multi-user.target

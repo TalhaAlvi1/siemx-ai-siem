@@ -1,0 +1,44 @@
+{
+  "name": "Brute Force Attack Detection",
+  "consumer": "siem",
+  "schedule": {
+    "interval": "5m"
+  },
+  "throttle": "5m",
+  "notify_when": "onActionGroupChange",
+  "params": {
+    "index": [
+      "siem-logs-*"
+    ],
+    "timeField": "@timestamp",
+    "triggerValue": {
+      "threshold": {{ brute_force_threshold }},
+      "comparator": ">",
+      "timeWindowSize": 5,
+      "timeWindowUnit": "m"
+    },
+    "aggType": "count",
+    "groupBy": "top",
+    "groupLimit": 10,
+    "termField": "source.ip",
+    "termSize": 10,
+    "filterQuery": {
+      "query": "event.category:authentication AND event.outcome:failure",
+      "language": "kuery"
+    }
+  },
+  "actions": [
+    {
+      "group": "threshold met",
+      "id": "siem-email-connector",
+      "params": {
+        "to": "{{ alert_email_recipients | join(',') }}",
+        "subject": "🚨 Brute Force Attack Detected",
+        "message": "A brute force attack has been detected from IP: {{context.groupByField}} with {{context.conditions}} failed login attempts in the last 5 minutes."
+      }
+    }
+  ],
+  "enabled": true,
+  "tags": ["security", "authentication", "brute-force"],
+  "rule_type_id": "threshold"
+}

@@ -1,0 +1,102 @@
+---
+# SIEMX Deployment Playbook
+# Main playbook for deploying the complete SIEM system
+
+- name: Deploy SIEMX System
+  hosts: siem_servers
+  become: yes
+  vars_files:
+    - ../group_vars/all.yml
+  
+  pre_tasks:
+    - name: Check system requirements
+      assert:
+        that:
+          - ansible_distribution == "Ubuntu"
+          - ansible_distribution_version is version('22.04', '>=')
+        fail_msg: "This playbook requires Ubuntu 22.04 or later"
+      
+    - name: Update package cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+  roles:
+    - role: elasticsearch
+      tags: elasticsearch
+    
+    - role: logstash
+      tags: logstash
+    
+    - role: kibana
+      tags: kibana
+    
+    - role: anomaly-detection
+      tags: anomaly-detection
+
+- name: Deploy Filebeat Agents
+  hosts: log_sources
+  become: yes
+  vars_files:
+    - ../group_vars/all.yml
+  
+  roles:
+    - role: filebeat
+      tags: filebeat
+
+- name: Post-deployment Configuration
+  hosts: siem_servers
+  become: yes
+  vars_files:
+    - ../group_vars/all.yml
+  
+  tasks:
+    - name: Wait for Elasticsearch to be ready
+      uri:
+        url: "https://{{ elasticsearch_host }}:{{ elasticsearch_port }}/_cluster/health"
+        method: GET
+        user: "{{ elasticsearch_username }}"
+        password: "{{ elasticsearch_password }}"
+        validate_certs: no
+        timeout: 30
+      register: es_health
+      until: es_health.status == 200
+      retries: 30
+      delay: 10
+    
+    - name: Import Kibana dashboards
+      uri:
+        url: "http://{{ kibana_host }}:{{ kibana_port }}/api/saved_objects/_import"
+        method: POST
+        body_format: form-multipart
+        src: "../dashboards/{{ item }}"
+        headers:
+          kbn-xsrf: "true"
+        status_code: 200
+      loop:
+        - security-overview.ndjson
+        - system-health.ndjson
+        - network-monitoring.ndjson
+      ignore_errors: yes
+    
+    - name: Create alert rules
+      uri:
+        url: "http://{{ kibana_host }}:{{ kibana_port }}/api/alerting/rule"
+        method: POST
+        body_format: json
+        body: "{{ lookup('file', '../alerts/' + item) }}"
+        headers:
+          kbn-xsrf: "true"
+          Content-Type: "application/json"
+        status_code: 200
+      loop:
+        - brute-force.rule
+        - port-scan.rule
+        - unauthorized-access.rule
+      ignore_errors: yes
+    
+    - name: Start anomaly detection service
+      systemd:
+        name: anomaly-detector
+        state: started
+        enabled: yes

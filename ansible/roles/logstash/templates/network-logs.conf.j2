@@ -1,0 +1,199 @@
+input {
+  udp {
+    port => 514
+    type => "network"
+  }
+  
+  tcp {
+    port => 514
+    type => "network"
+  }
+  
+  beats {
+    port => 5046
+    ssl => {{ logstash_ssl_enabled | lower }}
+    {% if logstash_ssl_enabled %}
+    ssl_certificate => "{{ logstash_ssl_certificate }}"
+    ssl_key => "{{ logstash_ssl_key }}"
+    {% endif %}
+    tags => ["network"]
+  }
+}
+
+filter {
+  # Only process network logs
+  if "network" in [tags] or [type] == "network" {
+    
+    # Parse syslog format for network devices
+    if [message] {
+      grok {
+        match => {
+          "message" => [
+            "<%{POSINT:syslog_pri}>%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:device} %{GREEDYDATA:syslog_message}",
+            "<%{POSINT:syslog_pri}>%{TIMESTAMP_ISO8601:timestamp} %{SYSLOGHOST:device} %{GREEDYDATA:syslog_message}",
+            "%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:device} %{GREEDYDATA:syslog_message}"
+          ]
+        }
+        overwrite => [ "message" ]
+      }
+      
+      # Parse priority to get facility and severity
+      if [syslog_pri] {
+        ruby {
+          code => "
+            pri = event.get('syslog_pri').to_i
+            event.set('[syslog][facility][code]', (pri / 8).floor)
+            event.set('[syslog][severity][code]', pri % 8)
+          "
+        }
+      }
+      
+      # Parse timestamp
+      date {
+        match => [ "timestamp", "MMM dd HH:mm:ss", "ISO8601" ]
+        target => "@timestamp"
+        timezone => "UTC"
+      }
+    }
+    
+    # Handle Cisco ASA/Firewall logs
+    if [syslog_message] =~ /^%ASA-/ or [device] =~ /asa|firewall/i {
+      mutate {
+        add_field => {
+          "[event][category]" => "firewall"
+          "[network][device][type]" => "firewall"
+        }
+      }
+      
+      # Parse ASA specific format
+      grok {
+        match => {
+          "syslog_message" => "%{CISCOTIMESTAMP:asa_timestamp} %%{CISCO_REASON:asa_reason}: %{GREEDYDATA:asa_details}"
+        }
+      }
+      
+      # Extract IP addresses and ports
+      grok {
+        match => {
+          "asa_details" => [
+            "Built %{WORD:connection_type} bound %{WORD:direction} connection %{NUMBER:conn_id} for %{NOTSPACE:interface_out}:%{IP:source_ip}/%{NUMBER:source_port:int} \\(%{IP:translated_source_ip}/%{NUMBER:translated_source_port:int}\\) to %{NOTSPACE:interface_in}:%{IP:destination_ip}/%{NUMBER:destination_port:int} \\(%{IP:translated_destination_ip}/%{NUMBER:translated_destination_port:int}\\)",
+            "%{WORD:action} %{WORD:protocol} src %{NOTSPACE:source_interface}:%{IP:source_ip}/%{NUMBER:source_port:int} dst %{NOTSPACE:destination_interface}:%{IP:destination_ip}/%{NUMBER:destination_port:int}"
+          ]
+        }
+      }
+    }
+    
+    # Handle router/syslog logs
+    else if [syslog_message] =~ /^%(\w+-)+/ {
+      mutate {
+        add_field => {
+          "[event][category]" => "network"
+          "[network][device][type]" => "router"
+        }
+      }
+      
+      # Extract interface information
+      grok {
+        match => {
+          "syslog_message" => [
+            "%{WORD:action}: Interface %{NOTSPACE:interface}, %{GREEDYDATA:interface_status}",
+            "%{WORD:protocol}: %{IP:source_ip} to %{IP:destination_ip} on %{NOTSPACE:interface}"
+          ]
+        }
+      }
+    }
+    
+    # Handle general network traffic logs
+    else {
+      mutate {
+        add_field => {
+          "[event][category]" => "network_traffic"
+        }
+      }
+      
+      # Extract common network patterns
+      grok {
+        match => {
+          "syslog_message" => [
+            "%{IP:source_ip} > %{IP:destination_ip}:%{NUMBER:destination_port:int}",
+            "SRC=%{IP:source_ip} DST=%{IP:destination_ip} SPT=%{NUMBER:source_port:int} DPT=%{NUMBER:destination_port:int} PROTO=%{WORD:protocol}"
+          ]
+        }
+      }
+    }
+    
+    # Add geographic information for IP addresses
+    {% if geoip_enabled %}
+    if [source_ip] and [source_ip] != "-" {
+      geoip {
+        source => "source_ip"
+        database => "{{ geoip_database_path }}"
+        target => "geoip_source"
+        add_field => {
+          "[source][geo][location]" => "%{[geoip_source][location]}"
+          "[source][geo][country_name]" => "%{[geoip_source][country_name]}"
+          "[source][geo][city_name]" => "%{[geoip_source][city_name]}"
+        }
+      }
+    }
+    
+    if [destination_ip] and [destination_ip] != "-" {
+      geoip {
+        source => "destination_ip"
+        database => "{{ geoip_database_path }}"
+        target => "geoip_destination"
+        add_field => {
+          "[destination][geo][location]" => "%{[geoip_destination][location]}"
+          "[destination][geo][country_name]" => "%{[geoip_destination][country_name]}"
+          "[destination][geo][city_name]" => "%{[geoip_destination][city_name]}"
+        }
+      }
+    }
+    {% endif %}
+    
+    # Calculate network flow metrics
+    if [source_ip] and [destination_ip] {
+      fingerprint {
+        source => [ "source_ip", "destination_ip", "source_port", "destination_port" ]
+        target => "[network][flow][id]"
+        method => "SHA1"
+      }
+    }
+    
+    # Clean up fields
+    mutate {
+      remove_field => [
+        "timestamp",
+        "syslog_pri",
+        "syslog_message",
+        "asa_timestamp",
+        "asa_reason",
+        "asa_details",
+        "geoip_source",
+        "geoip_destination"
+      ]
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["https://{{ elasticsearch_host }}:{{ elasticsearch_port }}"]
+    user => "{{ elasticsearch_username }}"
+    password => "${ES_PASSWORD:{{ elasticsearch_password }}}"
+    ssl_certificate_authorities => ["{{ tls_ca_certificate }}"]
+    ssl => true
+    ssl_certificate_verification => true
+    index => "network-%{+YYYY.MM.dd}"
+    template_name => "network"
+    template => "/etc/logstash/templates/network-template.json"
+    template_overwrite => true
+  }
+  
+  # Debug output
+  if [log_level] == "debug" {
+    stdout {
+      codec => rubydebug
+    }
+  }
+}

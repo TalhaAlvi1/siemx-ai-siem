@@ -1,0 +1,68 @@
+---
+# Kibana Configuration
+
+# ==================== SERVER ====================
+server.host: "{{ kibana_server_host }}"
+server.port: {{ kibana_server_port }}
+server.name: "{{ kibana_server_name }}"
+
+# ==================== SSL ====================
+{% if kibana_server_ssl_enabled %}
+server.ssl.enabled: true
+server.ssl.certificate: {{ kibana_server_ssl_certificate }}
+server.ssl.key: {{ kibana_server_ssl_key }}
+{% endif %}
+
+# ==================== ELASTICSEARCH ====================
+elasticsearch.hosts: {{ kibana_elasticsearch_hosts | to_json }}
+elasticsearch.username: {{ kibana_elasticsearch_username }}
+elasticsearch.password: ${ELASTICSEARCH_PASSWORD:{{ kibana_elasticsearch_password }}}
+
+# Elasticsearch SSL
+elasticsearch.ssl.certificateAuthorities: {{ kibana_elasticsearch_ssl_certificateAuthorities | to_json }}
+elasticsearch.ssl.verificationMode: {{ kibana_elasticsearch_ssl_verificationMode }}
+
+# ==================== SECURITY ====================
+xpack.security.encryptionKey: ${KIBANA_ENCRYPTION_KEY:{{ kibana_encryption_key }}}
+xpack.security.secureCookies: {{ kibana_secure_cookies }}
+xpack.security.session.idleTimeout: {{ kibana_session_idleTimeout }}
+xpack.security.session.lifespan: {{ kibana_session_lifespan }}
+
+# ==================== MONITORING ====================
+monitoring.ui.enabled: {{ kibana_monitoring_ui_enabled }}
+
+# ==================== FEATURES ====================
+newsfeed.enabled: {{ kibana_newsfeed_enabled }}
+telemetry.enabled: {{ kibana_telemetry_enabled }}
+autocomplete.valueSuggestions.enabled: {{ kibana_autocomplete_value_suggestions_enabled }}
+
+# ==================== PATHS ====================
+path.data: {{ kibana_path_data }}
+path.logs: {{ kibana_path_logs }}
+
+# ==================== PERFORMANCE ====================
+server.maxPayloadBytes: {{ kibana_server_maxPayloadBytes }}
+
+# ==================== LOGGING ====================
+logging.level: {{ kibana_logging_level }}
+logging.dest: {{ kibana_logging_dest }}
+
+# ==================== SAVED OBJECTS ====================
+savedObjects.maxImportPayloadBytes: {{ kibana_saved_objects_max_import_payload_bytes }}
+savedObjects.maxImportExportSize: {{ kibana_saved_objects_max_import_export_size }}
+
+# ==================== MAPS ====================
+tilemap.regionmap.url: {{ kibana_tilemap_regionmap_url }}
+tilemap.regionmap.layers: {{ kibana_tilemap_regionmap_layers | to_json }}
+map.includeElasticMapsService: {{ kibana_map_includeElasticMapsService }}
+map.proxyElasticMapsServiceInMaps: {{ kibana_map_proxyElasticMapsServiceInMaps }}
+
+# ==================== DEFAULT APP ====================
+kibana.defaultAppId: {{ kibana_default_app_id }}
+
+# ==================== SPACES ====================
+{% if kibana_spaces_enabled %}
+xpack.spaces.enabled: true
+{% else %}
+xpack.spaces.enabled: false
+{% endif %}

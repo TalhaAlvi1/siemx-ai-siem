@@ -1,0 +1,157 @@
+---
+# SIEMX Global Variables
+# Shared configuration for all components
+
+# === System Configuration ===
+siem_version: "8.12.0"
+siem_environment: "production"  # production, staging, development
+siem_data_directory: "/var/lib/siemx"
+siem_config_directory: "/etc/siemx"
+siem_log_directory: "/var/log/siemx"
+
+# === Network Configuration ===
+elasticsearch_host: "localhost"
+elasticsearch_port: 9200
+elasticsearch_transport_port: 9300
+logstash_host: "localhost"
+logstash_port: 5044
+kibana_host: "localhost"
+kibana_port: 5601
+
+# === Security Configuration ===
+# Elasticsearch credentials
+elasticsearch_username: "elastic"
+elasticsearch_password: "{{ vault_elasticsearch_password | default('changeme') }}"
+
+# TLS/SSL settings
+tls_enabled: true
+tls_certificate_path: "/etc/siemx/certs"
+tls_ca_certificate: "{{ tls_certificate_path }}/ca.crt"
+tls_server_certificate: "{{ tls_certificate_path }}/server.crt"
+tls_server_key: "{{ tls_certificate_path }}/server.key"
+
+# API keys
+elasticsearch_api_key: "{{ vault_elasticsearch_api_key | default('') }}"
+kibana_encryption_key: "{{ vault_kibana_encryption_key | default('') }}"
+
+# === Elasticsearch Configuration ===
+elasticsearch_cluster_name: "siemx-cluster"
+elasticsearch_node_name: "siemx-node-1"
+elasticsearch_heap_size: "2g"
+elasticsearch_discovery_seed_hosts: ["localhost"]
+elasticsearch_cluster_initial_master_nodes: ["siemx-node-1"]
+
+# Index settings
+elasticsearch_index_prefix: "siem-logs"
+elasticsearch_replica_count: 1
+elasticsearch_shard_count: 3
+
+# ILM (Index Lifecycle Management)
+ilm_policy_name: "siem-ilm-policy"
+ilm_retention_days: 90
+ilm_hot_phase_days: 30
+ilm_warm_phase_days: 30
+ilm_cold_phase_days: 30
+
+# === Logstash Configuration ===
+logstash_pipeline_workers: 4
+logstash_batch_size: 125
+logstash_queue_type: "persisted"
+logstash_dead_letter_queue: true
+
+# Pipeline configurations
+windows_logs_pipeline: "/etc/logstash/conf.d/windows-logs.conf"
+linux_logs_pipeline: "/etc/logstash/conf.d/linux-logs.conf"
+network_logs_pipeline: "/etc/logstash/conf.d/network-logs.conf"
+
+# GeoIP settings
+geoip_database_path: "/etc/logstash/GeoLite2-City.mmdb"
+geoip_enabled: true
+
+# === Kibana Configuration ===
+kibana_server_name: "siemx-kibana"
+kibana_default_app_id: "dashboard"
+kibana_monitoring_ui_enabled: true
+
+# Space configuration
+kibana_spaces_enabled: true
+kibana_default_space: "siem-space"
+
+# === Filebeat Configuration ===
+filebeat_version: "8.12.0"
+filebeat_inputs_directory: "/etc/filebeat/inputs.d"
+
+# Windows configuration
+windows_event_logs:
+  - name: "Security"
+    level: "information"
+  - name: "System"
+    level: "information"
+  - name: "Application"
+    level: "information"
+
+# Linux configuration
+linux_syslog_paths:
+  - "/var/log/auth.log"
+  - "/var/log/syslog"
+  - "/var/log/messages"
+
+# === Anomaly Detection ===
+anomaly_detection_enabled: true
+anomaly_detection_port: 8080
+anomaly_detection_algorithm: "isolation_forest"
+anomaly_threshold: 0.7
+
+# ML settings
+ml_model_path: "/opt/anomaly-detector/models"
+ml_features:
+  - "timestamp"
+  - "source_ip"
+  - "event_id"
+  - "count"
+  - "hour_of_day"
+
+# === Alerting Configuration ===
+alerting_enabled: true
+alert_email_recipients:
+  - "security-team@company.com"
+  - "admin@company.com"
+
+# Alert thresholds
+brute_force_threshold: 5  # failed logins in 5 minutes
+port_scan_threshold: 10   # different ports in 1 minute
+unauthorized_access_hours: "18-06"  # outside business hours
+
+# === Monitoring ===
+monitoring_enabled: true
+monitoring_interval: "30s"
+health_check_endpoint: "/health"
+metrics_endpoint: "/metrics"
+
+# === Performance Settings ===
+# Resource limits
+max_events_per_second: 1000
+dashboard_load_timeout: 3  # seconds
+log_ingestion_timeout: 2  # seconds
+
+# Memory settings
+elasticsearch_memory_lock: true
+logstash_memory_limit: "2g"
+kibana_memory_limit: "1g"
+
+# === Backup Configuration ===
+backup_enabled: true
+backup_schedule: "0 2 * * *"  # daily at 2 AM
+backup_retention_days: 30
+backup_storage_path: "/backup/siemx"
+
+# === Logging Levels ===
+elasticsearch_log_level: "INFO"
+logstash_log_level: "WARN"
+kibana_log_level: "INFO"
+filebeat_log_level: "INFO"
+
+# === Service Configuration ===
+service_restart_on_failure: true
+service_max_restarts: 3
+service_restart_delay: "60s"

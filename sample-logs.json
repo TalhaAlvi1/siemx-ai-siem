@@ -1,0 +1,5389 @@
+[
+  {
+    "@timestamp": "2026-04-06T05:31:13.020158",
+    "message": "Failed password for invalid_user from 204.232.7.49 port 35892 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-91.jackson.net"
+    },
+    "source": {
+      "ip": "204.232.7.49"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T05:31:13.031363",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "patricklewis",
+        "IpAddress": "27.20.198.24",
+        "WorkstationName": "email-72.cooper-coleman.net"
+      }
+    },
+    "host": {
+      "name": "desktop-39.dixon.com",
+      "ip": [
+        "10.132.214.227"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_failure",
+      "outcome": "failure"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T06:00:12.995628",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "jorge82",
+        "IpAddress": "212.91.152.10",
+        "WorkstationName": "db-71.medina.com"
+      }
+    },
+    "host": {
+      "name": "db-43.brooks.biz",
+      "ip": [
+        "192.168.7.139"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_failure",
+      "outcome": "failure"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T06:05:13.051917",
+    "message": "192.168.121.37 > 10.77.237.249:80",
+    "source": {
+      "ip": "192.168.121.37"
+    },
+    "destination": {
+      "ip": "10.77.237.249",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 107
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-48.fox-phelps.info"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T06:18:13.038608",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "net.exe",
+        "ProcessId": "1332"
+      }
+    },
+    "host": {
+      "name": "db-84.brown.com",
+      "ip": [
+        "192.168.240.88"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T06:36:13.008970",
+    "message": "Accepted publickey for plee from 158.66.125.214 port 49018 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-43.white-carter.info"
+    },
+    "source": {
+      "ip": "158.66.125.214"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T06:41:13.025350",
+    "message": "172.20.62.108 > 172.28.223.229:3389",
+    "source": {
+      "ip": "172.20.62.108"
+    },
+    "destination": {
+      "ip": "172.28.223.229",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 388
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-72.martin.org"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T06:43:13.039630",
+    "message": "211.103.143.123 > 192.168.167.4:443",
+    "source": {
+      "ip": "211.103.143.123"
+    },
+    "destination": {
+      "ip": "192.168.167.4",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 995
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-19.anderson-lopez.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T06:58:13.060570",
+    "message": "Accepted publickey for jenniferchang from 183.121.72.113 port 39232 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-45.washington.com"
+    },
+    "source": {
+      "ip": "183.121.72.113"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:00:13.042762",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "cmd.exe",
+        "ProcessId": "9080"
+      }
+    },
+    "host": {
+      "name": "desktop-92.richmond.biz",
+      "ip": [
+        "192.168.98.80"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T07:02:13.043969",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4648,
+      "level": "Information"
+    },
+    "host": {
+      "name": "db-29.franklin-davis.biz",
+      "ip": [
+        "192.168.82.139"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:04:13.046586",
+    "message": "Accepted publickey for barbara82 from 198.165.200.141 port 45967 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-70.obrien-campbell.com"
+    },
+    "source": {
+      "ip": "198.165.200.141"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:06:13.016459",
+    "message": "10.183.175.147 > 172.31.107.60:3389",
+    "source": {
+      "ip": "10.183.175.147"
+    },
+    "destination": {
+      "ip": "172.31.107.60",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 354
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-40.obrien.org"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:07:13.024695",
+    "message": "Accepted publickey for thomasraymond from 32.94.170.75 port 33294 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-17.haley.org"
+    },
+    "source": {
+      "ip": "32.94.170.75"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:08:13.057912",
+    "message": "192.168.208.153 > 192.168.165.4:3389",
+    "source": {
+      "ip": "192.168.208.153"
+    },
+    "destination": {
+      "ip": "192.168.165.4",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 634
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-31.arnold.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:16:13.023569",
+    "message": "172.28.96.109 > 192.168.155.11:443",
+    "source": {
+      "ip": "172.28.96.109"
+    },
+    "destination": {
+      "ip": "192.168.155.11",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 937
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "srv-05.flores.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:21:13.056977",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "email-05.luna-travis.com",
+      "ip": [
+        "10.153.82.74"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:32:12.999809",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "net.exe",
+        "ProcessId": "1946"
+      }
+    },
+    "host": {
+      "name": "srv-30.williams.org",
+      "ip": [
+        "10.169.241.44"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T07:32:13.028378",
+    "message": "Accepted publickey for morrowluke from 204.231.32.250 port 58870 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-57.wilson.info"
+    },
+    "source": {
+      "ip": "204.231.32.250"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:38:13.046390",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4726,
+      "level": "Information"
+    },
+    "host": {
+      "name": "email-24.gilmore.com",
+      "ip": [
+        "172.29.207.159"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:40:13.001426",
+    "message": "Accepted publickey for lunadonna from 111.223.29.225 port 48471 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-90.craig-owens.com"
+    },
+    "source": {
+      "ip": "111.223.29.225"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T07:50:13.058402",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "root",
+        "IpAddress": "93.207.240.166",
+        "WorkstationName": "lt-88.rios-williams.info"
+      }
+    },
+    "host": {
+      "name": "email-51.gutierrez.info",
+      "ip": [
+        "172.21.120.184"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_failure",
+      "outcome": "failure"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T08:14:12.965894",
+    "message": "Accepted publickey for wadams from 43.157.30.75 port 38844 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-93.perez.info"
+    },
+    "source": {
+      "ip": "43.157.30.75"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T08:14:13.062744",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "cmd.exe",
+        "ProcessId": "7073"
+      }
+    },
+    "host": {
+      "name": "email-06.johnson.com",
+      "ip": [
+        "172.17.218.205"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T08:21:13.004703",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "camachobailey",
+        "IpAddress": "179.228.200.235",
+        "WorkstationName": "web-08.anderson.com"
+      }
+    },
+    "host": {
+      "name": "web-43.figueroa.com",
+      "ip": [
+        "10.60.25.255"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T08:24:13.037784",
+    "message": "Accepted publickey for kimberly31 from 215.202.19.235 port 48036 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "db-53.williams.com"
+    },
+    "source": {
+      "ip": "215.202.19.235"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T08:32:13.013611",
+    "message": "10.186.249.203 > 192.168.40.142:3389",
+    "source": {
+      "ip": "10.186.249.203"
+    },
+    "destination": {
+      "ip": "192.168.40.142",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 691
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-45.manning.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T08:37:13.047666",
+    "message": "Accepted publickey for fisherdavid from 40.192.16.156 port 56340 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "db-51.davila.com"
+    },
+    "source": {
+      "ip": "40.192.16.156"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T09:04:12.988860",
+    "message": "172.17.160.183 > 192.168.162.0:443",
+    "source": {
+      "ip": "172.17.160.183"
+    },
+    "destination": {
+      "ip": "192.168.162.0",
+      "port": 443
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 511
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-38.cox-mcbride.net"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T09:11:13.001996",
+    "message": "10.167.211.23 > 10.233.184.156:22",
+    "source": {
+      "ip": "10.167.211.23"
+    },
+    "destination": {
+      "ip": "10.233.184.156",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 334
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-79.green.info"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T09:28:13.030103",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "laptop-48.hunt.com",
+      "ip": [
+        "192.168.16.75"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T09:50:13.011608",
+    "message": "10.97.250.79 > 192.168.145.164:80",
+    "source": {
+      "ip": "10.97.250.79"
+    },
+    "destination": {
+      "ip": "192.168.145.164",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 108
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-28.pena.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T10:02:13.030512",
+    "message": "Accepted publickey for tara71 from 99.191.246.254 port 56183 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "db-99.obrien-garcia.org"
+    },
+    "source": {
+      "ip": "99.191.246.254"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T10:12:13.013031",
+    "message": "Accepted publickey for jenniferjohnson from 196.166.207.98 port 43848 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-54.dickerson-anderson.info"
+    },
+    "source": {
+      "ip": "196.166.207.98"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T10:15:13.051125",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4726,
+      "level": "Information"
+    },
+    "host": {
+      "name": "srv-58.shepherd.net",
+      "ip": [
+        "192.168.18.168"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T10:20:13.006515",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "ethanfinley",
+        "IpAddress": "92.99.103.97",
+        "WorkstationName": "web-04.good.com"
+      }
+    },
+    "host": {
+      "name": "desktop-51.lewis.com",
+      "ip": [
+        "10.188.111.165"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T10:29:13.006260",
+    "message": "192.168.88.209 > 192.168.143.155:443",
+    "source": {
+      "ip": "192.168.88.209"
+    },
+    "destination": {
+      "ip": "192.168.143.155",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 294
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-74.johnson.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T10:36:13.011072",
+    "message": "Accepted publickey for dustin38 from 89.52.212.151 port 62050 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-83.freeman.net"
+    },
+    "source": {
+      "ip": "89.52.212.151"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T11:03:12.993593",
+    "message": "10.239.219.229 > 192.168.239.64:443",
+    "source": {
+      "ip": "10.239.219.229"
+    },
+    "destination": {
+      "ip": "192.168.239.64",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 730
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-56.ford.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T11:05:12.998675",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "powershell.exe",
+        "ProcessId": "6634"
+      }
+    },
+    "host": {
+      "name": "laptop-43.lyons.com",
+      "ip": [
+        "172.28.65.34"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T11:27:13.025791",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "admin",
+        "IpAddress": "148.242.156.97",
+        "WorkstationName": "desktop-67.bates.com"
+      }
+    },
+    "host": {
+      "name": "desktop-55.davidson.org",
+      "ip": [
+        "10.99.139.190"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_failure",
+      "outcome": "failure"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T11:46:13.061819",
+    "message": "Accepted publickey for adamsshawn from 201.138.34.192 port 37284 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "db-03.hart-roberts.com"
+    },
+    "source": {
+      "ip": "201.138.34.192"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T11:51:13.042320",
+    "message": "172.24.171.35 > 172.28.35.173:22",
+    "source": {
+      "ip": "172.24.171.35"
+    },
+    "destination": {
+      "ip": "172.28.35.173",
+      "port": 22
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 342
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-32.hogan.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T12:08:13.052572",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4672,
+      "level": "Information"
+    },
+    "host": {
+      "name": "email-64.archer-fuller.biz",
+      "ip": [
+        "10.125.17.73"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T12:21:12.992926",
+    "message": "Failed password for administrator from 142.43.27.6 port 41673 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-43.copeland.biz"
+    },
+    "source": {
+      "ip": "142.43.27.6"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T12:43:13.023008",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4726,
+      "level": "Information"
+    },
+    "host": {
+      "name": "desktop-29.phelps.com",
+      "ip": [
+        "192.168.238.54"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T12:46:13.044271",
+    "message": "Accepted publickey for contrerasrobert from 157.153.52.77 port 43836 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-34.allen.com"
+    },
+    "source": {
+      "ip": "157.153.52.77"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T12:47:13.032843",
+    "message": "Accepted publickey for jallen from 210.117.86.12 port 34519 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "db-79.dennis.biz"
+    },
+    "source": {
+      "ip": "210.117.86.12"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T13:05:13.033216",
+    "message": "10.8.108.120 > 192.168.118.109:443",
+    "source": {
+      "ip": "10.8.108.120"
+    },
+    "destination": {
+      "ip": "192.168.118.109",
+      "port": 443
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 447
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-83.mcclain.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T13:09:12.991552",
+    "message": "Accepted publickey for nicholskaren from 120.179.29.22 port 59171 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-30.blanchard.com"
+    },
+    "source": {
+      "ip": "120.179.29.22"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T13:13:13.013845",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4648,
+      "level": "Information"
+    },
+    "host": {
+      "name": "lt-00.horton.org",
+      "ip": [
+        "192.168.160.240"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T13:16:12.987143",
+    "message": "Accepted publickey for sheri83 from 163.87.193.238 port 45719 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "laptop-13.wallace.com"
+    },
+    "source": {
+      "ip": "163.87.193.238"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T13:18:13.014830",
+    "message": "10.1.86.103 > 192.168.160.28:80",
+    "source": {
+      "ip": "10.1.86.103"
+    },
+    "destination": {
+      "ip": "192.168.160.28",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 540
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-21.parker-lane.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T13:25:13.009869",
+    "message": "Accepted publickey for michelle49 from 142.166.164.170 port 52778 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-01.mcbride.com"
+    },
+    "source": {
+      "ip": "142.166.164.170"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T13:33:13.040988",
+    "message": "203.50.226.54 > 10.161.188.240:8080",
+    "source": {
+      "ip": "203.50.226.54"
+    },
+    "destination": {
+      "ip": "10.161.188.240",
+      "port": 8080
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 115
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-75.hunt.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:00:12.994177",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4726,
+      "level": "Information"
+    },
+    "host": {
+      "name": "laptop-34.jackson.info",
+      "ip": [
+        "10.181.97.19"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:19:12.992394",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "lt-87.jordan.org",
+      "ip": [
+        "192.168.183.124"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:20:13.041469",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "powershell.exe",
+        "ProcessId": "7181"
+      }
+    },
+    "host": {
+      "name": "email-51.marshall.net",
+      "ip": [
+        "192.168.50.194"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T14:28:13.051531",
+    "message": "Accepted publickey for abradley from 209.237.32.17 port 39246 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-36.anderson.com"
+    },
+    "source": {
+      "ip": "209.237.32.17"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:29:12.972336",
+    "message": "Accepted publickey for erica07 from 101.169.72.94 port 60702 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-60.brown.com"
+    },
+    "source": {
+      "ip": "101.169.72.94"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:32:13.055827",
+    "message": "Accepted publickey for kimberly58 from 109.14.142.83 port 42023 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-19.walters.info"
+    },
+    "source": {
+      "ip": "109.14.142.83"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:42:13.022530",
+    "message": "172.17.70.187 > 172.31.131.150:22",
+    "source": {
+      "ip": "172.17.70.187"
+    },
+    "destination": {
+      "ip": "172.31.131.150",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 599
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-02.thompson.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:43:13.040019",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "srv-86.ramirez.org",
+      "ip": [
+        "10.95.59.57"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:45:13.063513",
+    "message": "10.25.251.16 > 172.25.76.213:80",
+    "source": {
+      "ip": "10.25.251.16"
+    },
+    "destination": {
+      "ip": "172.25.76.213",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 297
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-67.lee.info"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T14:50:12.973486",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "hutchinsonerin",
+        "IpAddress": "205.28.136.189",
+        "WorkstationName": "db-73.wall.info"
+      }
+    },
+    "host": {
+      "name": "email-32.berg-fischer.com",
+      "ip": [
+        "192.168.251.87"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T15:03:13.003209",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4648,
+      "level": "Information"
+    },
+    "host": {
+      "name": "laptop-56.roberson.com",
+      "ip": [
+        "172.23.190.157"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T15:07:12.971308",
+    "message": "172.31.90.156 > 10.140.185.23:3389",
+    "source": {
+      "ip": "172.31.90.156"
+    },
+    "destination": {
+      "ip": "10.140.185.23",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 996
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-35.rice.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T15:09:12.986374",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "powershell.exe",
+        "ProcessId": "3209"
+      }
+    },
+    "host": {
+      "name": "srv-56.fuller.com",
+      "ip": [
+        "172.29.225.232"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T15:13:13.027968",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4672,
+      "level": "Information"
+    },
+    "host": {
+      "name": "desktop-50.hill.com",
+      "ip": [
+        "192.168.15.109"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T15:13:13.057309",
+    "message": "Accepted publickey for carlossavage from 151.90.43.159 port 42740 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-01.smith-hines.info"
+    },
+    "source": {
+      "ip": "151.90.43.159"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T15:29:13.004136",
+    "message": "192.168.8.242 > 10.173.145.64:443",
+    "source": {
+      "ip": "192.168.8.242"
+    },
+    "destination": {
+      "ip": "10.173.145.64",
+      "port": 443
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 498
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.ramirez.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T16:03:13.017725",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "williamsmichelle",
+        "IpAddress": "95.150.76.237",
+        "WorkstationName": "desktop-72.bolton.com"
+      }
+    },
+    "host": {
+      "name": "lt-21.gibson-gordon.com",
+      "ip": [
+        "10.254.223.152"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_failure",
+      "outcome": "failure"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T16:22:12.984462",
+    "message": "Failed password for root from 163.98.139.215 port 40090 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "db-45.gonzalez.biz"
+    },
+    "source": {
+      "ip": "163.98.139.215"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T16:29:12.997389",
+    "message": "Accepted publickey for ritterkimberly from 96.247.148.117 port 62214 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-07.soto.biz"
+    },
+    "source": {
+      "ip": "96.247.148.117"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T16:49:13.029347",
+    "message": "Failed password for root from 178.247.187.85 port 60558 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-99.miller.net"
+    },
+    "source": {
+      "ip": "178.247.187.85"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T16:54:13.017502",
+    "message": "192.168.237.32 > 192.168.115.217:443",
+    "source": {
+      "ip": "192.168.237.32"
+    },
+    "destination": {
+      "ip": "192.168.115.217",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 199
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-94.meyer.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T17:04:13.055440",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "email-17.fernandez-robinson.org",
+      "ip": [
+        "172.22.179.86"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T17:05:13.015909",
+    "message": "Accepted publickey for sarah42 from 220.133.192.200 port 35537 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-56.williams.com"
+    },
+    "source": {
+      "ip": "220.133.192.200"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T17:14:13.050866",
+    "message": "205.159.228.127 > 172.19.201.179:5900",
+    "source": {
+      "ip": "205.159.228.127"
+    },
+    "destination": {
+      "ip": "172.19.201.179",
+      "port": 5900
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 1009
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-90.keller.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T17:28:12.989361",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4648,
+      "level": "Information"
+    },
+    "host": {
+      "name": "email-75.brown.com",
+      "ip": [
+        "10.53.0.203"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T17:36:13.064692",
+    "message": "Accepted publickey for morganosborn from 217.246.173.90 port 32874 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-97.lopez.com"
+    },
+    "source": {
+      "ip": "217.246.173.90"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T17:57:13.028823",
+    "message": "172.27.159.39 > 192.168.0.193:22",
+    "source": {
+      "ip": "172.27.159.39"
+    },
+    "destination": {
+      "ip": "192.168.0.193",
+      "port": 22
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 849
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-15.shaw-miles.info"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T17:58:13.043528",
+    "message": "172.19.199.54 > 192.168.201.218:22",
+    "source": {
+      "ip": "172.19.199.54"
+    },
+    "destination": {
+      "ip": "192.168.201.218",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 429
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-51.cruz.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T18:02:13.016685",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4726,
+      "level": "Information"
+    },
+    "host": {
+      "name": "email-36.carey-ballard.com",
+      "ip": [
+        "192.168.243.159"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T18:20:13.048294",
+    "message": "10.208.134.95 > 10.25.13.25:443",
+    "source": {
+      "ip": "10.208.134.95"
+    },
+    "destination": {
+      "ip": "10.25.13.25",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 128
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-87.martin.org"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T18:40:13.020864",
+    "message": "192.168.131.15 > 10.186.170.218:22",
+    "source": {
+      "ip": "192.168.131.15"
+    },
+    "destination": {
+      "ip": "10.186.170.218",
+      "port": 22
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 979
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-52.young.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T18:58:12.999579",
+    "message": "192.168.82.233 > 172.18.231.205:443",
+    "source": {
+      "ip": "192.168.82.233"
+    },
+    "destination": {
+      "ip": "172.18.231.205",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 343
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-50.davis.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T18:59:13.034952",
+    "message": "10.203.154.36 > 172.16.12.211:22",
+    "source": {
+      "ip": "10.203.154.36"
+    },
+    "destination": {
+      "ip": "172.16.12.211",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 326
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-10.erickson.net"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T19:14:13.047030",
+    "message": "10.227.186.56 > 192.168.3.111:443",
+    "source": {
+      "ip": "10.227.186.56"
+    },
+    "destination": {
+      "ip": "192.168.3.111",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 311
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-27.escobar-hughes.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T19:18:13.008663",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "db-91.rich-brown.info",
+      "ip": [
+        "192.168.106.3"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T19:33:12.999119",
+    "message": "Failed password for root from 198.26.157.160 port 36449 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-73.welch-hanson.org"
+    },
+    "source": {
+      "ip": "198.26.157.160"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T19:42:12.992110",
+    "message": "172.18.200.12 > 172.24.230.9:3389",
+    "source": {
+      "ip": "172.18.200.12"
+    },
+    "destination": {
+      "ip": "172.24.230.9",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 357
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-28.montgomery.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T19:44:12.990629",
+    "message": "172.21.103.14 > 10.146.94.145:3389",
+    "source": {
+      "ip": "172.21.103.14"
+    },
+    "destination": {
+      "ip": "10.146.94.145",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 210
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-92.willis-andrade.info"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T19:54:13.016981",
+    "message": "Accepted publickey for adamskristen from 179.29.255.73 port 57280 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-89.schroeder-collins.com"
+    },
+    "source": {
+      "ip": "179.29.255.73"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T20:08:13.027391",
+    "message": "Accepted publickey for fhood from 90.11.255.21 port 36070 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-02.barton.net"
+    },
+    "source": {
+      "ip": "90.11.255.21"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T20:13:13.048728",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "benjamin37",
+        "IpAddress": "133.43.104.30",
+        "WorkstationName": "web-36.stephens.com"
+      }
+    },
+    "host": {
+      "name": "web-94.aguilar.org",
+      "ip": [
+        "10.65.183.99"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_failure",
+      "outcome": "failure"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T20:20:13.000389",
+    "message": "172.22.125.20 > 172.24.34.72:443",
+    "source": {
+      "ip": "172.22.125.20"
+    },
+    "destination": {
+      "ip": "172.24.34.72",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 511
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-77.cook-bishop.org"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T20:23:12.995267",
+    "message": "196.13.177.219 > 10.190.51.220:445",
+    "source": {
+      "ip": "196.13.177.219"
+    },
+    "destination": {
+      "ip": "10.190.51.220",
+      "port": 445
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 1021
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-91.wilson.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T20:32:13.000014",
+    "message": "Failed password for root from 213.26.173.201 port 58285 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-38.fuentes.com"
+    },
+    "source": {
+      "ip": "213.26.173.201"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T20:39:13.000719",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "daniel52",
+        "IpAddress": "74.197.48.108",
+        "WorkstationName": "email-96.moody-rodriguez.com"
+      }
+    },
+    "host": {
+      "name": "lt-56.garcia-silva.net",
+      "ip": [
+        "10.110.55.95"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T21:07:12.991050",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4726,
+      "level": "Information"
+    },
+    "host": {
+      "name": "web-36.barr.net",
+      "ip": [
+        "192.168.80.134"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T21:22:13.034534",
+    "message": "Accepted publickey for heidi31 from 165.39.184.221 port 37881 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-66.chase-underwood.info"
+    },
+    "source": {
+      "ip": "165.39.184.221"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T21:27:13.030926",
+    "message": "172.26.167.118 > 172.30.70.163:443",
+    "source": {
+      "ip": "172.26.167.118"
+    },
+    "destination": {
+      "ip": "172.30.70.163",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 800
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-44.lawrence.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T21:48:13.023226",
+    "message": "Accepted publickey for erin09 from 113.49.34.212 port 45772 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "db-80.perez.com"
+    },
+    "source": {
+      "ip": "113.49.34.212"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T21:50:13.035808",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "amy28",
+        "IpAddress": "197.143.157.225",
+        "WorkstationName": "db-30.hall.info"
+      }
+    },
+    "host": {
+      "name": "lt-32.bernard.com",
+      "ip": [
+        "10.120.94.45"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T22:00:13.021472",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4672,
+      "level": "Information"
+    },
+    "host": {
+      "name": "laptop-59.bowman.com",
+      "ip": [
+        "172.21.3.84"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T22:12:13.024043",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "alejandrahoward",
+        "IpAddress": "155.114.59.115",
+        "WorkstationName": "laptop-51.contreras.com"
+      }
+    },
+    "host": {
+      "name": "srv-66.robinson.net",
+      "ip": [
+        "172.20.4.101"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-06T22:19:13.056480",
+    "message": "172.28.62.183 > 10.97.246.183:3389",
+    "source": {
+      "ip": "172.28.62.183"
+    },
+    "destination": {
+      "ip": "10.97.246.183",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 103
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-59.smith.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T22:32:13.027739",
+    "message": "10.88.169.248 > 172.25.137.22:80",
+    "source": {
+      "ip": "10.88.169.248"
+    },
+    "destination": {
+      "ip": "172.25.137.22",
+      "port": 80
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 676
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-32.davis.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T22:44:13.010413",
+    "message": "172.16.189.237 > 192.168.169.157:80",
+    "source": {
+      "ip": "172.16.189.237"
+    },
+    "destination": {
+      "ip": "192.168.169.157",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 512
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-48.martinez.net"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T23:03:13.003521",
+    "message": "Accepted publickey for dwaynebell from 193.97.15.177 port 38118 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-00.estrada.com"
+    },
+    "source": {
+      "ip": "193.97.15.177"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T23:09:13.043182",
+    "message": "Accepted publickey for anthony04 from 210.14.75.192 port 64550 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-11.nelson.com"
+    },
+    "source": {
+      "ip": "210.14.75.192"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T23:11:13.045431",
+    "message": "Accepted publickey for butlerbrenda from 157.116.120.241 port 46405 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-68.cox.com"
+    },
+    "source": {
+      "ip": "157.116.120.241"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T23:35:12.998180",
+    "message": "10.200.120.168 > 172.26.253.137:443",
+    "source": {
+      "ip": "10.200.120.168"
+    },
+    "destination": {
+      "ip": "172.26.253.137",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 865
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-92.contreras-wilson.biz"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T23:43:13.065355",
+    "message": "192.168.217.144 > 192.168.24.226:22",
+    "source": {
+      "ip": "192.168.217.144"
+    },
+    "destination": {
+      "ip": "192.168.24.226",
+      "port": 22
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 837
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-54.walters.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-06T23:54:13.044694",
+    "message": "172.29.243.72 > 172.27.168.159:22",
+    "source": {
+      "ip": "172.29.243.72"
+    },
+    "destination": {
+      "ip": "172.27.168.159",
+      "port": 22
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 406
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-90.wilson-contreras.org"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T00:04:12.972970",
+    "message": "10.69.232.135 > 10.35.194.145:80",
+    "source": {
+      "ip": "10.69.232.135"
+    },
+    "destination": {
+      "ip": "10.35.194.145",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 367
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-62.richardson.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T00:08:13.014280",
+    "message": "Accepted publickey for webstercynthia from 209.168.123.59 port 32219 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-60.andrews-johnson.info"
+    },
+    "source": {
+      "ip": "209.168.123.59"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T00:27:13.050341",
+    "message": "Accepted publickey for codycook from 181.226.30.253 port 46513 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-86.mccann-silva.com"
+    },
+    "source": {
+      "ip": "181.226.30.253"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T00:32:13.039221",
+    "message": "Failed password for brittany22 from 218.38.140.197 port 43443 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-22.ellis.net"
+    },
+    "source": {
+      "ip": "218.38.140.197"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T00:34:13.040443",
+    "message": "Accepted publickey for michaeljones from 52.211.170.171 port 63254 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-06.friedman-stone.net"
+    },
+    "source": {
+      "ip": "52.211.170.171"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T00:35:13.061245",
+    "message": "10.61.32.245 > 192.168.206.244:3389",
+    "source": {
+      "ip": "10.61.32.245"
+    },
+    "destination": {
+      "ip": "192.168.206.244",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 651
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "srv-38.johnson.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T00:45:13.008214",
+    "message": "192.168.33.19 > 192.168.239.219:443",
+    "source": {
+      "ip": "192.168.33.19"
+    },
+    "destination": {
+      "ip": "192.168.239.219",
+      "port": 443
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 779
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-11.owens.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T01:02:13.062371",
+    "message": "192.168.148.72 > 172.23.78.91:3389",
+    "source": {
+      "ip": "192.168.148.72"
+    },
+    "destination": {
+      "ip": "172.23.78.91",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 516
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "db-36.stewart-coleman.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T01:15:13.029151",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "web-31.werner.info",
+      "ip": [
+        "172.31.246.70"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T01:44:13.062949",
+    "message": "Failed password for stephaniecarter from 75.160.239.38 port 52275 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-79.brown-miller.biz"
+    },
+    "source": {
+      "ip": "75.160.239.38"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T02:14:12.994464",
+    "message": "Accepted publickey for garyrobbins from 220.131.82.254 port 44203 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-40.vasquez.org"
+    },
+    "source": {
+      "ip": "220.131.82.254"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T02:17:13.009667",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4648,
+      "level": "Information"
+    },
+    "host": {
+      "name": "lt-92.anderson.info",
+      "ip": [
+        "10.53.196.177"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T02:18:13.021935",
+    "message": "Accepted publickey for leonardbutler from 80.108.25.198 port 56164 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "desktop-16.burns-mcneil.biz"
+    },
+    "source": {
+      "ip": "80.108.25.198"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T02:24:13.010651",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4726,
+      "level": "Information"
+    },
+    "host": {
+      "name": "web-34.marshall.net",
+      "ip": [
+        "172.28.207.38"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T02:26:13.009432",
+    "message": "192.168.70.139 > 192.168.117.170:80",
+    "source": {
+      "ip": "192.168.70.139"
+    },
+    "destination": {
+      "ip": "192.168.117.170",
+      "port": 80
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 213
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-47.wilson.info"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T02:32:13.007597",
+    "message": "Accepted publickey for nherman from 207.200.106.219 port 37822 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-98.lee.com"
+    },
+    "source": {
+      "ip": "207.200.106.219"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T02:51:13.033661",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "vphillips",
+        "IpAddress": "197.173.219.59",
+        "WorkstationName": "desktop-35.murphy.com"
+      }
+    },
+    "host": {
+      "name": "web-41.brown-frazier.net",
+      "ip": [
+        "10.106.141.191"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-07T03:05:13.012054",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "petersondawn",
+        "IpAddress": "203.98.161.232",
+        "WorkstationName": "laptop-94.roberts.com"
+      }
+    },
+    "host": {
+      "name": "lt-07.barnes-delgado.info",
+      "ip": [
+        "10.211.226.95"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-07T03:15:13.047360",
+    "winlog": {
+      "event_data": {
+        "ProcessName": "cmd.exe",
+        "ProcessId": "4792"
+      }
+    },
+    "host": {
+      "name": "desktop-00.larsen-bass.com",
+      "ip": [
+        "10.145.103.56"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "process",
+      "type": "creation",
+      "outcome": "info"
+    }
+  },
+  {
+    "@timestamp": "2026-04-07T03:24:13.054737",
+    "message": "192.168.150.3 > 172.19.106.222:3389",
+    "source": {
+      "ip": "192.168.150.3"
+    },
+    "destination": {
+      "ip": "172.19.106.222",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 627
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-27.parker.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T03:30:13.029869",
+    "message": "190.245.134.227 > 172.30.78.132:22",
+    "source": {
+      "ip": "190.245.134.227"
+    },
+    "destination": {
+      "ip": "172.30.78.132",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 178
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-07.spencer.org"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T03:33:13.053659",
+    "message": "Accepted publickey for lauraberg from 152.24.51.205 port 61355 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "web-32.walker.net"
+    },
+    "source": {
+      "ip": "152.24.51.205"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T03:34:12.972088",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4648,
+      "level": "Information"
+    },
+    "host": {
+      "name": "laptop-03.ortega.com",
+      "ip": [
+        "10.202.175.35"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T03:43:13.015160",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "okim",
+        "IpAddress": "193.39.171.77",
+        "WorkstationName": "lt-94.miles-serrano.com"
+      }
+    },
+    "host": {
+      "name": "email-05.clark-harris.biz",
+      "ip": [
+        "192.168.135.58"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-07T03:46:13.061516",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4720,
+      "level": "Information"
+    },
+    "host": {
+      "name": "web-40.hill-best.com",
+      "ip": [
+        "10.91.109.93"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T03:55:12.960261",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "lterry",
+        "IpAddress": "143.178.43.253",
+        "WorkstationName": "srv-78.rodriguez-sanchez.com"
+      }
+    },
+    "host": {
+      "name": "desktop-13.moore-foster.org",
+      "ip": [
+        "172.24.109.36"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-07T03:56:13.045023",
+    "winlog": {
+      "provider_name": "Microsoft-Windows-Security-Auditing",
+      "event_id": 4672,
+      "level": "Information"
+    },
+    "host": {
+      "name": "email-40.boyd.net",
+      "ip": [
+        "10.236.76.156"
+      ]
+    },
+    "tags": [
+      "windows"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T04:00:13.041677",
+    "message": "Accepted publickey for howardhaley from 32.150.26.39 port 56086 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "lt-20.stewart.com"
+    },
+    "source": {
+      "ip": "32.150.26.39"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T04:10:13.038305",
+    "message": "172.22.140.34 > 10.102.39.111:80",
+    "source": {
+      "ip": "172.22.140.34"
+    },
+    "destination": {
+      "ip": "10.102.39.111",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP",
+      "bytes": 564
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-35.schneider.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T04:18:13.046060",
+    "message": "10.168.207.193 > 10.172.158.31:3389",
+    "source": {
+      "ip": "10.168.207.193"
+    },
+    "destination": {
+      "ip": "10.172.158.31",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 824
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-70.graham-robertson.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T04:41:13.063740",
+    "winlog": {
+      "event_data": {
+        "TargetUserName": "andresjohnson",
+        "IpAddress": "81.71.94.184",
+        "WorkstationName": "lt-84.archer.com"
+      }
+    },
+    "host": {
+      "name": "laptop-11.graves-klein.com",
+      "ip": [
+        "10.83.94.168"
+      ]
+    },
+    "tags": [
+      "windows"
+    ],
+    "event": {
+      "category": "authentication",
+      "type": "logon_success",
+      "outcome": "success"
+    }
+  },
+  {
+    "@timestamp": "2026-04-07T04:45:13.005886",
+    "message": "Accepted publickey for kathleen24 from 107.132.199.210 port 61989 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "srv-10.fitzpatrick.info"
+    },
+    "source": {
+      "ip": "107.132.199.210"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_success",
+      "outcome": "success"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T04:57:12.985144",
+    "message": "10.20.216.173 > 172.26.190.77:22",
+    "source": {
+      "ip": "10.20.216.173"
+    },
+    "destination": {
+      "ip": "172.26.190.77",
+      "port": 22
+    },
+    "network": {
+      "protocol": "UDP",
+      "bytes": 556
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "srv-63.phillips.com"
+    },
+    "tags": [
+      "network"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:01:13.066674",
+    "message": "22.218.53.58 > 10.169.150.243:139",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "10.236.214.31",
+      "port": 139
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:01:13.066783",
+    "message": "22.218.53.58 > 192.168.107.174:135",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "192.168.199.236",
+      "port": 135
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:01:13.067545",
+    "message": "123.250.235.254 > 172.30.132.52:995",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "172.18.218.46",
+      "port": 995
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:01:13.069487",
+    "message": "18.144.125.186 > 192.168.136.223:110",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "192.168.72.49",
+      "port": 110
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:01:13.071512",
+    "message": "180.192.33.163 > 172.20.5.250:445",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "10.128.171.149",
+      "port": 445
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:12.989912",
+    "message": "Failed password for administrator from 76.84.54.53 port 54271 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "laptop-10.perkins.biz"
+    },
+    "source": {
+      "ip": "76.84.54.53"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.067343",
+    "message": "123.250.235.254 > 172.20.199.14:110",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "192.168.80.110",
+      "port": 110
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.067423",
+    "message": "123.250.235.254 > 192.168.53.210:8080",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "192.168.99.154",
+      "port": 8080
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.068501",
+    "message": "18.144.125.186 > 10.83.1.79:53",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "172.29.127.115",
+      "port": 53
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.068974",
+    "message": "18.144.125.186 > 10.202.210.233:3389",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "192.168.22.32",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.070576",
+    "message": "141.185.69.11 > 10.229.171.187:80",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "172.31.190.169",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.070634",
+    "message": "141.185.69.11 > 192.168.220.13:1723",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "172.23.184.118",
+      "port": 1723
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.071986",
+    "message": "180.192.33.163 > 172.23.25.63:80",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "10.133.65.252",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:02:13.072104",
+    "message": "180.192.33.163 > 192.168.186.52:443",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "10.194.66.250",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:03:13.069381",
+    "message": "18.144.125.186 > 192.168.243.161:80",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "192.168.6.212",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:03:13.070246",
+    "message": "141.185.69.11 > 172.17.27.250:22",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "172.22.99.191",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:03:13.071752",
+    "message": "180.192.33.163 > 10.71.105.102:3389",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "172.31.138.10",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.066284",
+    "message": "22.218.53.58 > 192.168.29.2:23",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "192.168.251.86",
+      "port": 23
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.066837",
+    "message": "22.218.53.58 > 10.232.152.200:5900",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "172.31.48.4",
+      "port": 5900
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.069290",
+    "message": "18.144.125.186 > 192.168.250.151:445",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "10.165.34.120",
+      "port": 445
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.070308",
+    "message": "141.185.69.11 > 192.168.150.153:139",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "10.22.128.208",
+      "port": 139
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.070517",
+    "message": "141.185.69.11 > 192.168.160.58:443",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "192.168.108.198",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.070750",
+    "message": "141.185.69.11 > 192.168.137.244:445",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "172.30.43.243",
+      "port": 445
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.071423",
+    "message": "180.192.33.163 > 10.4.245.207:53",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "10.121.238.9",
+      "port": 53
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:04:13.072045",
+    "message": "180.192.33.163 > 172.17.135.151:8080",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "10.210.21.8",
+      "port": 8080
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:05:13.068340",
+    "message": "18.144.125.186 > 10.7.118.147:443",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "10.156.208.50",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:05:13.069171",
+    "message": "18.144.125.186 > 10.242.228.137:22",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "172.19.29.27",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:05:13.070053",
+    "message": "141.185.69.11 > 192.168.220.0:25",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "172.17.89.216",
+      "port": 25
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 46662 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.066566",
+    "message": "22.218.53.58 > 172.25.61.127:80",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "172.30.37.234",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.066727",
+    "message": "22.218.53.58 > 10.242.108.25:8080",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "172.21.195.129",
+      "port": 8080
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.067704",
+    "message": "123.250.235.254 > 10.12.226.171:445",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "10.251.176.190",
+      "port": 445
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.068735",
+    "message": "18.144.125.186 > 172.30.201.117:1723",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "172.30.89.14",
+      "port": 1723
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.068852",
+    "message": "18.144.125.186 > 10.184.55.239:25",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "172.30.105.181",
+      "port": 25
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.071635",
+    "message": "180.192.33.163 > 172.23.32.194:135",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "10.169.255.174",
+      "port": 135
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:13.071694",
+    "message": "180.192.33.163 > 172.22.239.84:993",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "172.21.178.107",
+      "port": 993
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:06:43.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 54630 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 47007 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:13.066451",
+    "message": "22.218.53.58 > 10.72.237.58:3389",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "10.149.164.30",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:13.067226",
+    "message": "123.250.235.254 > 172.30.13.57:1723",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "172.27.55.77",
+      "port": 1723
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:13.067651",
+    "message": "123.250.235.254 > 10.21.251.165:139",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "10.114.255.114",
+      "port": 139
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:13.067810",
+    "message": "123.250.235.254 > 10.71.217.41:3389",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "172.21.70.187",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:13.067863",
+    "message": "123.250.235.254 > 10.124.31.69:993",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "172.18.127.157",
+      "port": 993
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:13.071810",
+    "message": "180.192.33.163 > 172.28.225.138:22",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "10.207.172.112",
+      "port": 22
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:07:43.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 44300 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 39800 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:13.066353",
+    "message": "22.218.53.58 > 10.51.44.17:443",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "10.20.61.106",
+      "port": 443
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:13.067491",
+    "message": "123.250.235.254 > 192.168.108.183:25",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "192.168.107.81",
+      "port": 25
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:13.067598",
+    "message": "123.250.235.254 > 172.29.136.66:23",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "172.28.193.237",
+      "port": 23
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:13.068435",
+    "message": "18.144.125.186 > 10.26.13.38:23",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "10.128.55.131",
+      "port": 23
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:13.068795",
+    "message": "18.144.125.186 > 192.168.254.79:995",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "192.168.2.227",
+      "port": 995
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:13.069928",
+    "message": "141.185.69.11 > 192.168.175.254:135",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "172.29.127.157",
+      "port": 135
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:08:43.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 57806 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 62938 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:13.066510",
+    "message": "22.218.53.58 > 192.168.5.107:53",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "172.16.192.205",
+      "port": 53
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:13.066943",
+    "message": "22.218.53.58 > 10.12.149.34:1723",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "192.168.47.88",
+      "port": 1723
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:13.067288",
+    "message": "123.250.235.254 > 10.50.110.147:80",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "172.31.57.161",
+      "port": 80
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:13.067757",
+    "message": "123.250.235.254 > 172.21.207.249:135",
+    "source": {
+      "ip": "123.250.235.254"
+    },
+    "destination": {
+      "ip": "192.168.142.24",
+      "port": 135
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "web-01.archer.biz"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:13.070458",
+    "message": "141.185.69.11 > 10.97.184.42:110",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "10.210.117.108",
+      "port": 110
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:13.071869",
+    "message": "180.192.33.163 > 10.160.31.174:23",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "192.168.83.57",
+      "port": 23
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:09:43.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 33473 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 36336 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.066621",
+    "message": "22.218.53.58 > 10.5.80.48:445",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "10.132.45.53",
+      "port": 445
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.066890",
+    "message": "22.218.53.58 > 172.17.254.33:110",
+    "source": {
+      "ip": "22.218.53.58"
+    },
+    "destination": {
+      "ip": "192.168.173.190",
+      "port": 110
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "desktop-00.duncan.net"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.068652",
+    "message": "18.144.125.186 > 172.23.138.94:993",
+    "source": {
+      "ip": "18.144.125.186"
+    },
+    "destination": {
+      "ip": "10.166.22.37",
+      "port": 993
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "lt-83.elliott.info"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.070118",
+    "message": "141.185.69.11 > 10.176.113.161:995",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "10.241.222.223",
+      "port": 995
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.070389",
+    "message": "141.185.69.11 > 10.16.254.0:3389",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "10.220.126.102",
+      "port": 3389
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.071574",
+    "message": "180.192.33.163 > 172.24.42.139:110",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "172.16.76.89",
+      "port": 110
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:13.071928",
+    "message": "180.192.33.163 > 10.71.165.198:139",
+    "source": {
+      "ip": "180.192.33.163"
+    },
+    "destination": {
+      "ip": "172.27.219.184",
+      "port": 139
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "laptop-55.townsend-burton.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:10:43.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 42841 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:11:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 61160 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:11:13.070693",
+    "message": "141.185.69.11 > 10.142.45.194:5900",
+    "source": {
+      "ip": "141.185.69.11"
+    },
+    "destination": {
+      "ip": "10.123.162.196",
+      "port": 5900
+    },
+    "network": {
+      "protocol": "TCP"
+    },
+    "event": {
+      "category": "network_traffic",
+      "type": "connection",
+      "outcome": "info"
+    },
+    "host": {
+      "name": "email-10.robles.com"
+    },
+    "tags": [
+      "network",
+      "port_scan_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:11:43.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 62137 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:12:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 61997 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:12:43.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 37471 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  },
+  {
+    "@timestamp": "2026-04-07T05:13:13.065918",
+    "message": "Failed password for administrator from 36.94.139.233 port 44184 ssh2",
+    "system": {
+      "syslog": {
+        "program": "sshd"
+      }
+    },
+    "host": {
+      "name": "email-24.hudson-lopez.com"
+    },
+    "source": {
+      "ip": "36.94.139.233"
+    },
+    "event": {
+      "category": "authentication",
+      "type": "login_failure",
+      "outcome": "failure"
+    },
+    "tags": [
+      "linux",
+      "brute_force_simulation"
+    ]
+  }
+]

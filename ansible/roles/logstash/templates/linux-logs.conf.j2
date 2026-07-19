@@ -1,0 +1,171 @@
+input {
+  beats {
+    port => 5045
+    ssl => {{ logstash_ssl_enabled | lower }}
+    {% if logstash_ssl_enabled %}
+    ssl_certificate => "{{ logstash_ssl_certificate }}"
+    ssl_key => "{{ logstash_ssl_key }}"
+    {% endif %}
+    tags => ["linux"]
+  }
+}
+
+filter {
+  # Only process Linux logs
+  if "linux" in [tags] {
+    
+    # Handle different log types
+    if [system][syslog] {
+      
+      # Parse syslog format
+      grok {
+        match => {
+          "message" => [
+            "%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:logsource} %{SYSLOGPROG}: %{GREEDYDATA:syslog_message}",
+            "%{TIMESTAMP_ISO8601:timestamp} %{SYSLOGHOST:logsource} %{SYSLOGPROG}: %{GREEDYDATA:syslog_message}"
+          ]
+        }
+        overwrite => [ "message" ]
+      }
+      
+      # Parse timestamp
+      date {
+        match => [ "timestamp", "MMM dd HH:mm:ss", "ISO8601" ]
+        target => "@timestamp"
+        timezone => "UTC"
+      }
+      
+      # Handle authentication logs specifically
+      if [program] == "sshd" {
+        mutate {
+          add_field => { "[event][category]" => "authentication" }
+        }
+        
+        # SSH login success
+        if [syslog_message] =~ /Accepted/ {
+          grok {
+            match => {
+              "syslog_message" => "Accepted %{WORD:auth_method} for %{USERNAME:user} from %{IP:source_ip} port %{NUMBER:source_port:int}"
+            }
+          }
+          mutate {
+            add_field => {
+              "[event][type]" => "login_success"
+              "[event][outcome]" => "success"
+              "[source][port]" => "%{source_port}"
+            }
+          }
+        }
+        # SSH login failure
+        else if [syslog_message] =~ /Failed|Invalid/ {
+          grok {
+            match => {
+              "syslog_message" => "(Failed|Invalid) %{WORD:auth_method} for %{USERNAME:user} from %{IP:source_ip} port %{NUMBER:source_port:int}"
+            }
+          }
+          mutate {
+            add_field => {
+              "[event][type]" => "login_failure"
+              "[event][outcome]" => "failure"
+              "[source][port]" => "%{source_port}"
+            }
+          }
+        }
+        # SSH disconnect
+        else if [syslog_message] =~ /Disconnected/ {
+          mutate {
+            add_field => {
+              "[event][type]" => "disconnect"
+              "[event][outcome]" => "info"
+            }
+          }
+        }
+      }
+      # Handle sudo logs
+      else if [program] == "sudo" {
+        mutate {
+          add_field => { "[event][category]" => "privilege" }
+        }
+        
+        if [syslog_message] =~ /COMMAND/ {
+          grok {
+            match => {
+              "syslog_message" => "%{USERNAME:user} : TTY=%{NOTSPACE:tty} ; PWD=%{PATH:pwd} ; USER=%{USERNAME:target_user} ; COMMAND=%{GREEDYDATA:command}"
+            }
+          }
+          mutate {
+            add_field => {
+              "[event][type]" => "sudo_command"
+              "[event][outcome]" => "info"
+              "[process][command_line]" => "%{command}"
+            }
+          }
+        }
+      }
+      
+      # Add geographic information for IP addresses
+      {% if geoip_enabled %}
+      if [source_ip] and [source_ip] != "-" {
+        geoip {
+          source => "source_ip"
+          database => "{{ geoip_database_path }}"
+          target => "geoip"
+          add_field => {
+            "[source][geo][location]" => "%{[geoip][location]}"
+            "[source][geo][country_name]" => "%{[geoip][country_name]}"
+            "[source][geo][city_name]" => "%{[geoip][city_name]}"
+          }
+        }
+      }
+      {% endif %}
+      
+      # Clean up fields
+      mutate {
+        remove_field => [
+          "timestamp",
+          "logsource",
+          "syslog_message",
+          "source_port"
+        ]
+      }
+    }
+    
+    # Handle journal logs
+    else if [system][journal] {
+      mutate {
+        add_field => {
+          "[event][category]" => "%{[system][journal][_SYSTEMD_UNIT]}"
+          "[host][name]" => "%{[host][name]}"
+        }
+      }
+      
+      # Parse timestamp from journal
+      date {
+        match => [ "[system][journal][_SOURCE_REALTIME_TIMESTAMP]", "UNIX_MS" ]
+        target => "@timestamp"
+      }
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["https://{{ elasticsearch_host }}:{{ elasticsearch_port }}"]
+    user => "{{ elasticsearch_username }}"
+    password => "${ES_PASSWORD:{{ elasticsearch_password }}}"
+    ssl_certificate_authorities => ["{{ tls_ca_certificate }}"]
+    ssl => true
+    ssl_certificate_verification => true
+    index => "linux-%{+YYYY.MM.dd}"
+    template_name => "linux"
+    template => "/etc/logstash/templates/linux-template.json"
+    template_overwrite => true
+  }
+  
+  # Debug output
+  if [log_level] == "debug" {
+    stdout {
+      codec => rubydebug
+    }
+  }
+}

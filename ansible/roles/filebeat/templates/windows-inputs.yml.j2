@@ -1,0 +1,24 @@
+- type: winlog
+  enabled: true
+  channels:
+{% for log in filebeat_windows_event_logs %}
+    - name: {{ log.name }}
+      level: {{ log.level }}
+      ignore_older: 72h
+{% endfor %}
+  processors:
+    - add_tags:
+        tags: [windows, eventlog]
+    - drop_fields:
+        fields: [agent, ecs, log, host]
+
+- type: log
+  enabled: true
+  paths:
+    - C:\Windows\System32\winevt\Logs\Security.evtx
+    - C:\Windows\System32\winevt\Logs\System.evtx
+    - C:\Windows\System32\winevt\Logs\Application.evtx
+  processors:
+    - add_tags:
+        tags: [windows, evtx]
+    - decode_xml_wineventlog: ~

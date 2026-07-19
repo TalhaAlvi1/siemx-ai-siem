@@ -1,0 +1,63 @@
+---
+# Kibana Role Defaults
+
+# Version and package settings
+kibana_version: "{{ siem_version }}"
+kibana_package_state: present
+
+# Service settings
+kibana_service_enabled: true
+kibana_service_state: started
+
+# Network settings
+kibana_server_host: "{{ kibana_host }}"
+kibana_server_port: "{{ kibana_port }}"
+
+# Elasticsearch connection
+kibana_elasticsearch_hosts: ["https://{{ elasticsearch_host }}:{{ elasticsearch_port }}"]
+kibana_elasticsearch_username: "{{ elasticsearch_username }}"
+kibana_elasticsearch_password: "{{ elasticsearch_password }}"
+
+# SSL settings
+kibana_server_ssl_enabled: "{{ tls_enabled }}"
+kibana_server_ssl_certificate: "{{ tls_server_certificate }}"
+kibana_server_ssl_key: "{{ tls_server_key }}"
+kibana_elasticsearch_ssl_certificateAuthorities: ["{{ tls_ca_certificate }}"]
+kibana_elasticsearch_ssl_verificationMode: "certificate"
+
+# Security settings
+kibana_encryption_key: "{{ kibana_encryption_key }}"
+kibana_secure_cookies: true
+
+# Path settings
+kibana_path_data: "{{ siem_data_directory }}/kibana"
+kibana_path_logs: "{{ siem_log_directory }}/kibana"
+
+# Performance settings
+kibana_server_maxPayloadBytes: 1048576
+kibana_monitoring_ui_enabled: "{{ kibana_monitoring_ui_enabled }}"
+
+# Feature settings
+kibana_newsfeed_enabled: false
+kibana_telemetry_enabled: false
+kibana_autocomplete_value_suggestions_enabled: true
+
+# Session settings
+kibana_session_idleTimeout: "8h"
+kibana_session_lifespan: "30d"
+
+# Logging settings
+kibana_logging_level: "{{ kibana_log_level }}"
+kibana_logging_dest: "{{ kibana_path_logs }}/kibana.log"
+
+# Saved objects settings
+kibana_saved_objects_max_import_payload_bytes: 10485760
+kibana_saved_objects_max_import_export_size: 10000
+
+# Tile map settings
+kibana_tilemap_regionmap_url: ""
+kibana_tilemap_regionmap_layers: []
+
+# Map settings
+kibana_map_includeElasticMapsService: false
+kibana_map_proxyElasticMapsServiceInMaps: false

@@ -1,0 +1,109 @@
+---
+# Filebeat Role - Main Tasks
+# Install and configure Filebeat agents
+
+- name: Determine target platform
+  set_fact:
+    target_os: "{{ 'windows' if ansible_os_family == 'Windows' else 'linux' }}"
+
+- name: Add Elastic GPG key (Linux)
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  when: target_os == 'linux'
+  tags: gpg
+
+- name: Add Elastic repository (Linux)
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+    state: present
+    filename: elastic-8.x
+  when: target_os == 'linux'
+  tags: repository
+
+- name: Install Filebeat (Linux)
+  apt:
+    name: "filebeat={{ filebeat_version }}"
+    state: present
+    update_cache: yes
+  when: target_os == 'linux'
+  notify: restart filebeat
+  tags: install
+
+- name: Install Filebeat (Windows)
+  win_package:
+    path: "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ filebeat_version }}-windows-x86_64.zip"
+    product_id: "Filebeat"
+    state: present
+  when: target_os == 'windows'
+  tags: install
+
+- name: Create Filebeat directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ filebeat_inputs_directory }}"
+  tags: directories
+
+- name: Configure Filebeat
+  template:
+    src: "filebeat.yml.j2"
+    dest: "/etc/filebeat/filebeat.yml"
+    owner: root
+    group: root
+    mode: '0600'
+  when: target_os == 'linux'
+  notify: restart filebeat
+  tags: configuration
+
+- name: Configure Filebeat (Windows)
+  win_template:
+    src: "filebeat-windows.yml.j2"
+    dest: "C:\\ProgramData\\filebeat\\filebeat.yml"
+  when: target_os == 'windows'
+  notify: restart filebeat
+  tags: configuration
+
+- name: Create input configuration files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - { src: "windows-inputs.yml.j2", dest: "{{ filebeat_inputs_directory }}/windows-inputs.yml" }
+    - { src: "linux-inputs.yml.j2", dest: "{{ filebeat_inputs_directory }}/linux-inputs.yml" }
+  when: target_os == 'linux'
+  notify: restart filebeat
+  tags: inputs
+
+- name: Enable Filebeat modules
+  shell: |
+    filebeat modules enable system
+    filebeat modules enable auditd
+  when: target_os == 'linux'
+  notify: restart filebeat
+  tags: modules
+
+- name: Set up Filebeat keystore
+  include_tasks: setup_keystore.yml
+  tags: keystore
+
+- name: Enable and start Filebeat service (Linux)
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: started
+  when: target_os == 'linux'
+  tags: service
+
+- name: Enable and start Filebeat service (Windows)
+  win_service:
+    name: filebeat
+    start_mode: auto
+    state: started
+  when: target_os == 'windows'
+  tags: service

@@ -1,0 +1,44 @@
+{
+  "name": "Unauthorized Access Outside Business Hours",
+  "consumer": "siem",
+  "schedule": {
+    "interval": "10m"
+  },
+  "throttle": "10m",
+  "notify_when": "onActionGroupChange",
+  "params": {
+    "index": [
+      "siem-logs-*"
+    ],
+    "timeField": "@timestamp",
+    "triggerValue": {
+      "threshold": 1,
+      "comparator": ">=",
+      "timeWindowSize": 10,
+      "timeWindowUnit": "m"
+    },
+    "aggType": "count",
+    "groupBy": "top",
+    "groupLimit": 10,
+    "termField": "user.name",
+    "termSize": 10,
+    "filterQuery": {
+      "query": "event.category:authentication AND event.outcome:success AND (user.name:administrator OR user.name:root OR user.name:admin)",
+      "language": "kuery"
+    }
+  },
+  "actions": [
+    {
+      "group": "threshold met",
+      "id": "siem-email-connector",
+      "params": {
+        "to": "{{ alert_email_recipients | join(',') }}",
+        "subject": "⚠️ Unauthorized Administrative Access",
+        "message": "Administrative access detected outside business hours for user: {{context.groupByField}}. This occurred at {{context.date}} and requires immediate investigation."
+      }
+    }
+  ],
+  "enabled": true,
+  "tags": ["security", "authorization", "admin-access"],
+  "rule_type_id": "threshold"
+}

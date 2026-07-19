@@ -1,0 +1,56 @@
+---
+# Filebeat Role Defaults
+
+# Version settings
+filebeat_version: "{{ filebeat_version }}"
+
+# Output settings
+filebeat_output_logstash_hosts: ["{{ logstash_host }}:5044"]
+filebeat_output_logstash_ssl_enabled: "{{ tls_enabled }}"
+filebeat_output_logstash_ssl_certificate_authorities: ["{{ tls_ca_certificate }}"]
+
+# SSL settings
+filebeat_ssl_certificate: "{{ tls_server_certificate }}"
+filebeat_ssl_key: "{{ tls_server_key }}"
+
+# Processing settings
+filebeat_processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+
+# Logging settings
+filebeat_logging_level: "{{ filebeat_log_level }}"
+filebeat_logging_to_files: true
+filebeat_logging_files_path: "/var/log/filebeat"
+filebeat_logging_files_name: "filebeat"
+filebeat_logging_files_rotateeverybytes: 10485760
+filebeat_logging_files_keepfiles: 7
+
+# Performance settings
+filebeat_max_procs: 1
+filebeat_queue_mem_events: 4096
+filebeat_spool_size: 2048
+
+# Windows specific settings
+filebeat_windows_event_logs: "{{ windows_event_logs }}"
+filebeat_windows_service_name: "filebeat"
+
+# Linux specific settings
+filebeat_linux_syslog_paths: "{{ linux_syslog_paths }}"
+filebeat_linux_audit_paths: ["/var/log/audit/audit.log"]
+
+# Tags and metadata
+filebeat_tags: ["siemx"]
+filebeat_fields:
+  env: "{{ siem_environment }}"
+  collector: "filebeat"
+
+# Modules settings
+filebeat_modules_path: "/etc/filebeat/modules.d"
+filebeat_modules_enabled:
+  - system
+  - auditd
+
+# Keystore settings
+filebeat_keystore_path: "/etc/filebeat/filebeat.keystore"

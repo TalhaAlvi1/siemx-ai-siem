@@ -1,0 +1,43 @@
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "min_age": "0ms",
+        "actions": {
+          "rollover": {
+            "max_age": "{{ ilm_hot_phase_days }}d",
+            "max_primary_shard_size": "50gb"
+          },
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+      "warm": {
+        "min_age": "{{ ilm_hot_phase_days }}d",
+        "actions": {
+          "forcemerge": {
+            "max_num_segments": 1
+          },
+          "set_priority": {
+            "priority": 50
+          }
+        }
+      },
+      "cold": {
+        "min_age": "{{ (ilm_hot_phase_days + ilm_warm_phase_days) }}d",
+        "actions": {
+          "set_priority": {
+            "priority": 0
+          }
+        }
+      },
+      "delete": {
+        "min_age": "{{ ilm_retention_days }}d",
+        "actions": {
+          "delete": {}
+        }
+      }
+    }
+  }
+}

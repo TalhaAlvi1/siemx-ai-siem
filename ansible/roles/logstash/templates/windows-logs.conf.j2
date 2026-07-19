@@ -1,0 +1,160 @@
+input {
+  beats {
+    port => 5044
+    ssl => {{ logstash_ssl_enabled | lower }}
+    {% if logstash_ssl_enabled %}
+    ssl_certificate => "{{ logstash_ssl_certificate }}"
+    ssl_key => "{{ logstash_ssl_key }}"
+    {% endif %}
+    tags => ["windows"]
+  }
+}
+
+filter {
+  # Only process Windows logs
+  if "windows" in [tags] {
+    
+    # Parse Windows Event Log format
+    if [winlog] {
+      
+      # Extract basic event information
+      mutate {
+        add_field => {
+          "[event][provider]" => "%{[winlog][provider_name]}"
+          "[event][id]" => "%{[winlog][event_id]}"
+          "[event][level]" => "%{[winlog][level]}"
+          "[host][name]" => "%{[host][name]}"
+        }
+      }
+      
+      # Convert event ID to integer for easier filtering
+      mutate {
+        convert => { "[event][id]" => "integer" }
+      }
+      
+      # Parse timestamp
+      date {
+        match => [ "[winlog][event_data][UtcTime]", "ISO8601" ]
+        target => "@timestamp"
+        timezone => "UTC"
+      }
+      
+      # Handle common Windows Event IDs
+      if [event][id] == 4624 {
+        # Successful logon
+        mutate {
+          add_field => {
+            "[event][category]" => "authentication"
+            "[event][type]" => "logon_success"
+            "[event][outcome]" => "success"
+          }
+        }
+      }
+      else if [event][id] == 4625 {
+        # Failed logon
+        mutate {
+          add_field => {
+            "[event][category]" => "authentication"
+            "[event][type]" => "logon_failure"
+            "[event][outcome]" => "failure"
+          }
+        }
+      }
+      else if [event][id] == 4672 {
+        # Special privileges assigned
+        mutate {
+          add_field => {
+            "[event][category]" => "privilege"
+            "[event][type]" => "special_logon"
+            "[event][outcome]" => "info"
+          }
+        }
+      }
+      else if [event][id] == 4688 {
+        # Process creation
+        mutate {
+          add_field => {
+            "[event][category]" => "process"
+            "[event][type]" => "creation"
+            "[event][outcome]" => "info"
+          }
+        }
+        
+        # Extract process information
+        if [winlog][event_data][ProcessName] {
+          mutate {
+            add_field => { "[process][name]" => "%{[winlog][event_data][ProcessName]}" }
+          }
+        }
+        if [winlog][event_data][ProcessId] {
+          mutate {
+            add_field => { "[process][pid]" => "%{[winlog][event_data][ProcessId]}" }
+            convert => { "[process][pid]" => "integer" }
+          }
+        }
+      }
+      
+      # Extract source IP for network-related events
+      if [winlog][event_data][IpAddress] {
+        mutate {
+          add_field => { "[source][ip]" => "%{[winlog][event_data][IpAddress]}" }
+        }
+      }
+      
+      # Extract user information
+      if [winlog][event_data][TargetUserName] {
+        mutate {
+          add_field => { "[user][name]" => "%{[winlog][event_data][TargetUserName]}" }
+        }
+      }
+      
+      # Add geographic information if GeoIP is available
+      {% if geoip_enabled %}
+      if [source][ip] and [source][ip] != "-" {
+        geoip {
+          source => "[source][ip]"
+          database => "{{ geoip_database_path }}"
+          target => "geoip"
+          add_field => {
+            "[source][geo][location]" => "%{[geoip][location]}"
+            "[source][geo][country_name]" => "%{[geoip][country_name]}"
+            "[source][geo][city_name]" => "%{[geoip][city_name]}"
+          }
+        }
+      }
+      {% endif %}
+      
+      # Clean up redundant fields
+      mutate {
+        remove_field => [
+          "[winlog][event_data]",
+          "[agent]",
+          "[ecs]",
+          "[log][offset]"
+        ]
+      }
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["https://{{ elasticsearch_host }}:{{ elasticsearch_port }}"]
+    user => "{{ elasticsearch_username }}"
+    password => "${ES_PASSWORD:{{ elasticsearch_password }}}"
+    ssl_certificate_authorities => ["{{ tls_ca_certificate }}"]
+    ssl => true
+    ssl_certificate_verification => true
+    index => "windows-%{+YYYY.MM.dd}"
+    template_name => "windows"
+    template => "/etc/logstash/templates/windows-template.json"
+    template_overwrite => true
+  }
+  
+  # Also output to stdout for debugging
+  if [log_level] == "debug" {
+    stdout {
+      codec => rubydebug
+    }
+  }
+}

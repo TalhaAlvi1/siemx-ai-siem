@@ -1,0 +1,137 @@
+---
+# Elasticsearch Role - Main Tasks
+# Install and configure Elasticsearch with security
+
+- name: Install Java (required for Elasticsearch)
+  apt:
+    name: openjdk-17-jdk
+    state: present
+  tags: java
+
+- name: Add Elasticsearch GPG key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  tags: gpg
+
+- name: Add Elasticsearch repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+    state: present
+    filename: elastic-8.x
+  tags: repository
+
+- name: Install Elasticsearch
+  apt:
+    name: "elasticsearch={{ siem_version }}"
+    state: present
+    update_cache: yes
+  notify: restart elasticsearch
+  tags: install
+
+- name: Create Elasticsearch directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: elasticsearch
+    group: elasticsearch
+    mode: '0755'
+  loop:
+    - "{{ siem_data_directory }}/elasticsearch"
+    - "{{ siem_config_directory }}/elasticsearch"
+    - "{{ siem_log_directory }}/elasticsearch"
+    - "{{ tls_certificate_path }}"
+  tags: directories
+
+- name: Generate TLS certificates
+  include_tasks: generate_certificates.yml
+  when: tls_enabled
+  tags: certificates
+
+- name: Configure Elasticsearch
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: root
+    group: elasticsearch
+    mode: '0640'
+  notify: restart elasticsearch
+  tags: configuration
+
+- name: Configure JVM options
+  template:
+    src: jvm.options.j2
+    dest: /etc/elasticsearch/jvm.options
+    owner: root
+    group: elasticsearch
+    mode: '0644'
+  notify: restart elasticsearch
+  tags: jvm
+
+- name: Set up Elasticsearch users and roles
+  include_tasks: setup_security.yml
+  when: elasticsearch_password != 'changeme'
+  tags: security
+
+- name: Create index templates
+  template:
+    src: index-template.json.j2
+    dest: "{{ siem_config_directory }}/elasticsearch/index-template.json"
+    owner: root
+    group: elasticsearch
+    mode: '0644'
+  tags: templates
+
+- name: Create ILM policy
+  template:
+    src: ilm-policy.json.j2
+    dest: "{{ siem_config_directory }}/elasticsearch/ilm-policy.json"
+    owner: root
+    group: elasticsearch
+    mode: '0644'
+  tags: ilm
+
+- name: Enable and start Elasticsearch service
+  systemd:
+    name: elasticsearch
+    enabled: yes
+    state: started
+  tags: service
+
+- name: Wait for Elasticsearch to be ready
+  uri:
+    url: "https://{{ elasticsearch_host }}:{{ elasticsearch_port }}/_cluster/health"
+    method: GET
+    user: "{{ elasticsearch_username }}"
+    password: "{{ elasticsearch_password }}"
+    validate_certs: no
+    timeout: 30
+  register: es_health
+  until: es_health.status == 200
+  retries: 30
+  delay: 10
+  tags: health-check
+
+- name: Upload index template
+  uri:
+    url: "https://{{ elasticsearch_host }}:{{ elasticsearch_port }}/_index_template/siem-logs-template"
+    method: PUT
+    user: "{{ elasticsearch_username }}"
+    password: "{{ elasticsearch_password }}"
+    body_format: json
+    body: "{{ lookup('file', '{{ siem_config_directory }}/elasticsearch/index-template.json') }}"
+    validate_certs: no
+    status_code: 200
+  tags: upload-template
+
+- name: Create ILM policy
+  uri:
+    url: "https://{{ elasticsearch_host }}:{{ elasticsearch_port }}/_ilm/policy/{{ ilm_policy_name }}"
+    method: PUT
+    user: "{{ elasticsearch_username }}"
+    password: "{{ elasticsearch_password }}"
+    body_format: json
+    body: "{{ lookup('file', '{{ siem_config_directory }}/elasticsearch/ilm-policy.json') }}"
+    validate_certs: no
+    status_code: 200
+  tags: create-ilm

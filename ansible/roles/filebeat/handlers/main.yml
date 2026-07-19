@@ -1,0 +1,23 @@
+---
+# Filebeat Handlers
+
+- name: restart filebeat
+  systemd:
+    name: filebeat
+    state: restarted
+  listen: "restart filebeat"
+  when: ansible_os_family != "Windows"
+
+- name: reload filebeat
+  systemd:
+    name: filebeat
+    state: reloaded
+  listen: "reload filebeat"
+  when: ansible_os_family != "Windows"
+
+- name: restart filebeat windows
+  win_service:
+    name: filebeat
+    state: restarted
+  listen: "restart filebeat"
+  when: ansible_os_family == "Windows"

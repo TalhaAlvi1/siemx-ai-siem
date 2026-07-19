@@ -1,0 +1,57 @@
+---
+# Generate TLS certificates for Elasticsearch
+
+- name: Check if CA certificate exists
+  stat:
+    path: "{{ tls_ca_certificate }}"
+  register: ca_cert_stat
+
+- name: Generate CA certificate
+  shell: |
+    openssl req -new -x509 -days 3650 -nodes -subj "/CN=SIEMX CA" \
+      -keyout {{ tls_certificate_path }}/ca.key \
+      -out {{ tls_ca_certificate }}
+  when: not ca_cert_stat.stat.exists
+  args:
+    creates: "{{ tls_ca_certificate }}"
+
+- name: Check if server certificate exists
+  stat:
+    path: "{{ tls_server_certificate }}"
+  register: server_cert_stat
+
+- name: Generate server private key
+  shell: |
+    openssl genrsa -out {{ tls_certificate_path }}/server.key 2048
+  when: not server_cert_stat.stat.exists
+  args:
+    creates: "{{ tls_server_key }}"
+
+- name: Generate server certificate signing request
+  shell: |
+    openssl req -new -key {{ tls_server_key }} \
+      -subj "/CN={{ elasticsearch_host }}" \
+      -out {{ tls_certificate_path }}/server.csr
+  when: not server_cert_stat.stat.exists
+  args:
+    creates: "{{ tls_certificate_path }}/server.csr"
+
+- name: Generate server certificate
+  shell: |
+    openssl x509 -req -days 3650 -in {{ tls_certificate_path }}/server.csr \
+      -CA {{ tls_ca_certificate }} -CAkey {{ tls_certificate_path }}/ca.key \
+      -CAcreateserial -out {{ tls_server_certificate }}
+  when: not server_cert_stat.stat.exists
+  args:
+    creates: "{{ tls_server_certificate }}"
+
+- name: Set proper permissions on certificates
+  file:
+    path: "{{ item }}"
+    mode: '0600'
+    owner: root
+    group: elasticsearch
+  loop:
+    - "{{ tls_ca_certificate }}"
+    - "{{ tls_server_certificate }}"
+    - "{{ tls_server_key }}"

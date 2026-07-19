@@ -1,0 +1,44 @@
+{
+  "name": "Data Exfiltration Detection",
+  "consumer": "siem",
+  "schedule": {
+    "interval": "5m"
+  },
+  "throttle": "5m",
+  "notify_when": "onActionGroupChange",
+  "params": {
+    "index": [
+      "network-*"
+    ],
+    "timeField": "@timestamp",
+    "triggerValue": {
+      "threshold": 100000000,
+      "comparator": ">",
+      "timeWindowSize": 5,
+      "timeWindowUnit": "m"
+    },
+    "aggType": "sum",
+    "groupBy": "top",
+    "groupLimit": 10,
+    "termField": "source.ip",
+    "termSize": 10,
+    "filterQuery": {
+      "query": "event.category:network AND network.direction:egress AND network.bytes:*",
+      "language": "kuery"
+    }
+  },
+  "actions": [
+    {
+      "group": "threshold met",
+      "id": "siem-email-connector",
+      "params": {
+        "to": "{{ alert_email_recipients | join(',') }}",
+        "subject": "🚨 Potential Data Exfiltration Detected",
+        "message": "Large outbound data transfer detected from IP: {{context.groupByField}} with {{context.conditions}} bytes transferred in the last 5 minutes. This may indicate data exfiltration activity."
+      }
+    }
+  ],
+  "enabled": true,
+  "tags": ["security", "network", "data-exfiltration"],
+  "rule_type_id": "threshold"
+}

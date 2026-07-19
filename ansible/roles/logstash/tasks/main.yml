@@ -1,0 +1,90 @@
+---
+# Logstash Role - Main Tasks
+# Install and configure Logstash with pipelines
+
+- name: Add Logstash GPG key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  tags: gpg
+
+- name: Add Logstash repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+    state: present
+    filename: elastic-8.x
+  tags: repository
+
+- name: Install Logstash
+  apt:
+    name: "logstash={{ siem_version }}"
+    state: present
+    update_cache: yes
+  notify: restart logstash
+  tags: install
+
+- name: Create Logstash directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: logstash
+    mode: '0755'
+  loop:
+    - "{{ siem_config_directory }}/logstash"
+    - "{{ siem_config_directory }}/logstash/conf.d"
+    - "{{ siem_log_directory }}/logstash"
+    - "/var/lib/logstash/queue"
+    - "/var/lib/logstash/dead_letter_queue"
+  tags: directories
+
+- name: Install GeoIP database
+  include_tasks: install_geoip.yml
+  when: geoip_enabled
+  tags: geoip
+
+- name: Configure Logstash
+  template:
+    src: logstash.yml.j2
+    dest: /etc/logstash/logstash.yml
+    owner: root
+    group: logstash
+    mode: '0644'
+  notify: restart logstash
+  tags: configuration
+
+- name: Create pipeline configuration files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: logstash
+    mode: '0644'
+  loop:
+    - { src: "windows-logs.conf.j2", dest: "{{ windows_logs_pipeline }}" }
+    - { src: "linux-logs.conf.j2", dest: "{{ linux_logs_pipeline }}" }
+    - { src: "network-logs.conf.j2", dest: "{{ network_logs_pipeline }}" }
+  notify: restart logstash
+  tags: pipelines
+
+- name: Set up Logstash users
+  include_tasks: setup_users.yml
+  tags: users
+
+- name: Enable and start Logstash service
+  systemd:
+    name: logstash
+    enabled: yes
+    state: started
+  tags: service
+
+- name: Wait for Logstash to be ready
+  uri:
+    url: "http://{{ logstash_host }}:9600/_node/stats"
+    method: GET
+    timeout: 30
+  register: logstash_stats
+  until: logstash_stats.status == 200
+  retries: 30
+  delay: 10
+  tags: health-check

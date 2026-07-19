@@ -1,0 +1,56 @@
+---
+# Logstash Role Defaults
+
+# Version and package settings
+logstash_version: "{{ siem_version }}"
+logstash_package_state: present
+
+# Service settings
+logstash_service_enabled: true
+logstash_service_state: started
+
+# Network settings
+logstash_http_host: "127.0.0.1"
+logstash_http_port: 9600
+
+# Pipeline settings
+logstash_pipeline_batch_size: "{{ logstash_batch_size }}"
+logstash_pipeline_batch_delay: 50
+logstash_pipeline_workers: "{{ logstash_pipeline_workers }}"
+
+# Queue settings
+logstash_queue_type: "{{ logstash_queue_type }}"
+logstash_queue_page_capacity: 64mb
+logstash_queue_max_events: 0
+logstash_queue_max_bytes: 1024mb
+
+# Dead letter queue settings
+logstash_dead_letter_queue_enable: "{{ logstash_dead_letter_queue }}"
+logstash_dead_letter_queue_max_bytes: 1024mb
+
+# Path settings
+logstash_path_data: /var/lib/logstash
+logstash_path_logs: "{{ siem_log_directory }}/logstash"
+logstash_path_config: /etc/logstash
+
+# Plugin settings
+logstash_plugins:
+  - logstash-input-beats
+  - logstash-filter-grok
+  - logstash-filter-geoip
+  - logstash-filter-mutate
+  - logstash-filter-date
+  - logstash-output-elasticsearch
+
+# Performance settings
+logstash_cpu_threads: auto
+logstash_memory_limit: "{{ logstash_memory_limit }}"
+
+# Logging settings
+logstash_log_level: "{{ logstash_log_level }}"
+
+# SSL settings
+logstash_ssl_enabled: "{{ tls_enabled }}"
+logstash_ssl_certificate: "{{ tls_server_certificate }}"
+logstash_ssl_key: "{{ tls_server_key }}"
+logstash_ssl_certificate_authorities: ["{{ tls_ca_certificate }}"]

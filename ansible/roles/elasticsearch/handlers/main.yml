@@ -1,0 +1,14 @@
+---
+# Elasticsearch Handlers
+
+- name: restart elasticsearch
+  systemd:
+    name: elasticsearch
+    state: restarted
+  listen: "restart elasticsearch"
+
+- name: reload elasticsearch
+  systemd:
+    name: elasticsearch
+    state: reloaded
+  listen: "reload elasticsearch"

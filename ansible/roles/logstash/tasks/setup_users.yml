@@ -1,0 +1,57 @@
+---
+# Set up Logstash users and permissions
+
+- name: Create logstash user if it doesn't exist
+  user:
+    name: logstash
+    system: yes
+    shell: /bin/false
+    home: /var/lib/logstash
+    create_home: no
+
+- name: Set ownership of Logstash directories
+  file:
+    path: "{{ item }}"
+    owner: logstash
+    group: logstash
+    recurse: yes
+  loop:
+    - "{{ siem_config_directory }}/logstash"
+    - "{{ siem_log_directory }}/logstash"
+    - "/var/lib/logstash"
+
+- name: Set proper permissions on sensitive files
+  file:
+    path: "{{ item }}"
+    mode: '0600'
+    owner: root
+    group: logstash
+  loop:
+    - "{{ geoip_database_path }}"
+
+- name: Create Logstash keystore
+  shell: |
+    /usr/share/logstash/bin/logstash-keystore create
+  args:
+    chdir: /usr/share/logstash
+    creates: "/var/lib/logstash/logstash.keystore"
+  become: yes
+  become_user: logstash
+
+- name: Add Elasticsearch password to keystore
+  shell: |
+    echo "{{ elasticsearch_password }}" | /usr/share/logstash/bin/logstash-keystore add -x ES_PASSWORD
+  args:
+    chdir: /usr/share/logstash
+  when: elasticsearch_password != 'changeme'
+  become: yes
+  become_user: logstash
+
+- name: Add SSL key passphrase to keystore (if applicable)
+  shell: |
+    echo "{{ ssl_key_passphrase | default('') }}" | /usr/share/logstash/bin/logstash-keystore add -x SSL_KEY_PASSPHRASE
+  args:
+    chdir: /usr/share/logstash
+  when: ssl_key_passphrase is defined and ssl_key_passphrase != ''
+  become: yes
+  become_user: logstash

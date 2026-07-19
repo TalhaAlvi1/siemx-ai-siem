@@ -1,0 +1,50 @@
+---
+# Logstash Configuration
+
+# ==================== NODE ====================
+node.name: "{{ ansible_hostname }}-logstash"
+
+# ==================== HTTP ====================
+http.host: "{{ logstash_http_host }}"
+http.port: "{{ logstash_http_port }}"
+
+# ==================== PATHS ====================
+path.data: "{{ logstash_path_data }}"
+path.logs: "{{ logstash_path_logs }}"
+path.config: "{{ logstash_path_config }}"
+
+# ==================== PIPELINE ====================
+pipeline.batch.size: {{ logstash_pipeline_batch_size }}
+pipeline.batch.delay: {{ logstash_pipeline_batch_delay }}
+pipeline.workers: {{ logstash_pipeline_workers }}
+
+# ==================== QUEUE ====================
+queue.type: {{ logstash_queue_type }}
+queue.page_capacity: {{ logstash_queue_page_capacity }}
+queue.max_events: {{ logstash_queue_max_events }}
+queue.max_bytes: {{ logstash_queue_max_bytes }}
+
+# ==================== DEAD LETTER QUEUE ====================
+dead_letter_queue.enable: {{ logstash_dead_letter_queue_enable }}
+dead_letter_queue.max_bytes: {{ logstash_dead_letter_queue_max_bytes }}
+
+# ==================== PERFORMANCE ====================
+cpu_threads: {{ logstash_cpu_threads }}
+
+# ==================== LOGGING ====================
+log.level: {{ logstash_log_level }}
+log.format: json
+
+# ==================== MODULES ====================
+modules.cli_launch: false
+
+# ==================== AUTORELOAD ====================
+config.reload.automatic: true
+config.reload.interval: 3s
+
+# ==================== SSL ====================
+{% if logstash_ssl_enabled %}
+ssl.certificate: {{ logstash_ssl_certificate }}
+ssl.key: {{ logstash_ssl_key }}
+ssl.certificate_authorities: {{ logstash_ssl_certificate_authorities | to_json }}
+{% endif %}
